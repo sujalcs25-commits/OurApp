@@ -1,0 +1,10 @@
+DEBUG: server.js starting. MONGODB_URI: MISSING
+◇ injected env (5) from .env // tip: ◈ encrypted .env [www.dotenvx.com]
+DEBUG: MONGODB_URI is SET
+[DB] Connecting to MongoDB...
+[DB] ✓ MongoDB connected — drivecare
+[Server] Running on 0.0.0.0:5000
+[Server] Access from network: http://<your-ip>:5000
+[DB] MongoDB disconnected — will retry automatically
+[DB] MongoDB disconnected — will retry automatically
+^C

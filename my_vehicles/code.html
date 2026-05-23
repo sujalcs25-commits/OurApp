@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DriveCare - Premium Vehicle Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#ecf1ff",
+                        "tertiary": "#004f53",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004f53",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#d8e3fb",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "primary-container": "#0056d2",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#d5e3fc",
+                        "surface-dim": "#cfdaf2",
+                        "on-secondary-container": "#57657a",
+                        "secondary-fixed": "#d5e3fc",
+                        "secondary": "#515f74",
+                        "tertiary-fixed": "#63f7ff",
+                        "on-surface": "#111c2d",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#c3c6d6",
+                        "on-surface-variant": "#424654",
+                        "on-primary-fixed": "#001847",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d8e3fb",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "tertiary-container": "#00696e",
+                        "on-tertiary-fixed": "#002021",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#b2c5ff",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "primary": "#0040a1",
+                        "surface": "#f9f9ff",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dae2ff",
+                        "on-background": "#111c2d",
+                        "surface-container": "#e7eeff",
+                        "tertiary-fixed-dim": "#00dce5",
+                        "surface-container-high": "#dee8ff",
+                        "on-primary-container": "#ccd8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f0f3ff",
+                        "background": "#f9f9ff",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "inverse-surface": "#263143",
+                        "surface-tint": "#0056d2",
+                        "on-tertiary-container": "#00eff9",
+                        "outline": "#737785"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-effect {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="bg-[#f9f9ff]/70 backdrop-blur-xl fixed top-0 z-50 w-full flex justify-between items-center px-6 py-4 no-border tonal-bg-shift">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#0040a1] text-2xl" data-icon="directions_car">directions_car</span>
+<h1 class="font-headline font-black tracking-tight text-xl text-[#0040a1]">DriveCare</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional man with a friendly expression in a clean, brightly lit corporate setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1eryROqV-TqN4kNgCHePe_ErHLVEBHweydT2caCOMyNEpDWk3QUKHMdSXXm9HfwQ8_GccEWg0VcVAsjg0RqmXbA31e4rZzqmfvJqVsiznuyz07tgICDaZN_aQI1QLnB7lw3SXdfi-wt9E6H-HHVHuAZf2Aejr61uHCS-tLJZyWsVS0UYnzHsEP1j98ZyOU0bfFQUeqht06jZAasrzrFj2jgfuzHovy70jdGizyKyK2lkyXKbFs0R5sQ2D7uABFlEQU8q9MGblq2s"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-5xl mx-auto">
+<!-- Header Section -->
+<section class="mb-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<h2 class="text-display-sm font-headline font-extrabold text-4xl tracking-tight text-on-surface">Garage</h2>
+<p class="text-on-surface-variant font-medium">Manage your elite fleet and service schedules</p>
+</div>
+<div class="flex gap-3">
+<span class="inline-flex items-center gap-2 px-4 py-2 bg-surface-container rounded-full text-sm font-semibold text-primary">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+                        3 Active Vehicles
+                    </span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Vehicle List -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Vehicle Card 1 -->
+<div class="group bg-surface-container-lowest rounded-xl p-1 transition-all hover:shadow-[0_24px_48px_rgba(17,28,45,0.08)]">
+<div class="relative h-48 w-full rounded-t-[1.25rem] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Side profile of a sleek white Tesla Model 3 parked in a minimalist modern architectural garage with soft overhead lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbm1zFLQYVEJMrDTHEzVEeKZgFyHPBiAG5evtjilS7tn_oH6xag58wV51FX-VXME23I9yqRqMo4wCrpMLo8Ns3-5QkV3mQEwtbwON3OqjdVc-NVTBWOz1QZ7xN2yVPxQpZ1fKvRkhEA8v32XSJGVWSGWWiPft13YdVmg76Go9sK0UQ5yG8aow2LF3574sqPnxTA97Op6SPHfbejEcCYUphmc4AUPfync8Q4wLs5f4wFxxA2J58uFmGlSmoQsOn9IauM1J6vsppzUM"/>
+<div class="absolute top-4 right-4 flex gap-2">
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-error/80 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-5 space-y-4">
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface">Tesla Model 3</h3>
+<p class="text-on-surface-variant text-sm font-mono tracking-widest">ABC-1234</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="bolt">bolt</span>
+<span class="text-xs font-bold uppercase tracking-tighter text-on-surface-variant">Electric</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs font-bold">Healthy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl p-1 transition-all hover:shadow-[0_24px_48px_rgba(17,28,45,0.08)]">
+<div class="relative h-48 w-full rounded-t-[1.25rem] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Front view of a dark blue BMW 5 series on an open coastal road during twilight with dramatic sky colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3iUOzRiQSdctaZqvuVlBwGVUq_kUYPY9q0yao973_LbhtPKKqdtk96K3MAsDneUdVTY3zs2Vg-MVXi0WYfm6M6DyO08piNkap3Hvb7zG_SG2YDLASG5dGh_aX3PhU0-plRyAFaPi-CZ6yEq_h9ZYUyUCtMS2tzEhG6EbEQBD-YtjBJUM8j4z3FcRQ_8gVn4to2-gPlW4oNbBL1kzOV39Cuv2bm0C4tcAZapagiUi6Jv9VMwdpFoi2uEVfL-ea93dUgHbw0mkIPaU"/>
+<div class="absolute top-4 right-4 flex gap-2">
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-error/80 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-5 space-y-4">
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface">BMW 5 Series</h3>
+<p class="text-on-surface-variant text-sm font-mono tracking-widest">XYZ-9876</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="local_gas_station">local_gas_station</span>
+<span class="text-xs font-bold uppercase tracking-tighter text-on-surface-variant">Petrol</span>
+</div>
+<div class="flex items-center gap-1 text-on-error-container">
+<span class="material-symbols-outlined text-sm" data-icon="warning" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="text-xs font-bold">Service Due</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Vehicle Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl p-1 transition-all hover:shadow-[0_24px_48px_rgba(17,28,45,0.08)]">
+<div class="relative h-48 w-full rounded-t-[1.25rem] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Silver Porsche Cayenne parked in a high-end urban neighborhood with clean architectural lines and soft morning shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA11HZm-BJma7LPar9FT-OEUehFdz3jWLcQbs2Cg_9G_NCjJxwOxXV5hemCQXHfgFGKE214DWLSPQWtaFBIbicB58L1hQydBnzo-noqB3iCQXUGxWoTIEla2p1sl1e8RnjgPnCr_JDOGbzETcMWnSYQ2Q2KbV1DE_O8Hqzz4ks3EnbonGgW2cOC2O-QuZA7pKMzt9hL2nQ10t6HKaWkNgWJ9AqOozba5MU1IthIn562nY2c24jbpPEIZDSh6lEWBz1uo0U1pZLF248"/>
+<div class="absolute top-4 right-4 flex gap-2">
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/40 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="edit">edit</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-error/80 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-5 space-y-4">
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface">Porsche Cayenne</h3>
+<p class="text-on-surface-variant text-sm font-mono tracking-widest">LUX-0001</p>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 px-3 py-1 bg-surface-container-low rounded-full">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="local_gas_station">local_gas_station</span>
+<span class="text-xs font-bold uppercase tracking-tighter text-on-surface-variant">Hybrid</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-xs font-bold">Healthy</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State (Hidden by default) -->
+<div class="hidden flex-col items-center justify-center py-24 text-center">
+<div class="w-64 h-64 mb-8">
+<img class="w-full h-full object-contain opacity-20 grayscale" data-alt="Abstract minimalist line art illustration of a sleek car silhouette against a clean white background with soft blue accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI6c_grHW2vGRvwo6-8QpWd-5pVsTN5fyXvgRxbwAo6d45BRTXljN2fnh-e4Wrvf2skDm4xxZGjq9XbG5EBF-ZloxYEGCH_XC0qMW4NqYUE7HLfLIXXuOe-dxPSPC8nh1WzZw6b2fYjnme5EF0HSmwX0BUG02ymrKIhfwkcIV0l7KJqJkcGv0vDGes308VxajDULAwY9wRjfoihzSvUiTJygIYuFHtZvk0BEqVePoQhljBLWiN1IPMT-BsnggI8QhQXrIhi5fheq8"/>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-2">No Vehicles Found</h3>
+<p class="text-on-surface-variant max-w-xs">Start your journey by adding your first premium vehicle to the garage.</p>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-32 right-8 w-16 h-16 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl flex items-center justify-center shadow-[0_24px_48px_rgba(0,86,210,0.24)] hover:scale-110 active:scale-95 transition-all duration-300 z-50">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</button>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[100] flex items-center justify-center p-6" style="display: none;">
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-xl shadow-2xl overflow-hidden">
+<div class="px-8 py-6 flex justify-between items-center bg-surface-container-low">
+<h3 class="font-headline font-extrabold text-2xl text-on-surface">Add Vehicle</h3>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-highest flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<form class="p-8 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="col-span-2 space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Vehicle Name</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-tertiary transition-all" placeholder="e.g. Tesla Model S" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Registration Number</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-tertiary transition-all" placeholder="ABC-1234" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Fuel Type</label>
+<select class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-tertiary transition-all appearance-none">
+<option>Electric</option>
+<option>Petrol</option>
+<option>Diesel</option>
+<option>Hybrid</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Vehicle Type</label>
+<select class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-tertiary transition-all appearance-none">
+<option>Sedan</option>
+<option>SUV</option>
+<option>Coupe</option>
+<option>Hatchback</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Purchase Date</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-tertiary transition-all" type="date"/>
+</div>
+</div>
+<div class="pt-4 flex gap-4">
+<button class="flex-1 px-6 py-4 rounded-xl font-bold uppercase text-sm tracking-widest text-on-surface-variant bg-surface-container hover:bg-surface-container-highest transition-colors" type="button">
+                        Cancel
+                    </button>
+<button class="flex-[2] px-6 py-4 rounded-xl font-bold uppercase text-sm tracking-widest text-white bg-gradient-to-r from-primary to-primary-container shadow-lg hover:opacity-90 transition-all" type="submit">
+                        Register Vehicle
+                    </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#f9f9ff]/70 backdrop-blur-xl rounded-t-[1.5rem] shadow-[0_-4px_24px_rgba(17,28,45,0.06)] no-border bg-[#f0f3ff]">
+<a class="flex flex-col items-center justify-center bg-[#e7eeff] text-[#0040a1] rounded-[1.25rem] px-5 py-2 scale-110 duration-200 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="garage" style="font-variation-settings: 'FILL' 1;">garage</span>
+<span class="font-['Inter'] font-medium text-[11px] uppercase tracking-wider mt-1">Garage</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#424654] px-5 py-2 hover:text-[#0040a1] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="build_circle">build_circle</span>
+<span class="font-['Inter'] font-medium text-[11px] uppercase tracking-wider mt-1">Service</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#424654] px-5 py-2 hover:text-[#0040a1] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="insert_chart">insert_chart</span>
+<span class="font-['Inter'] font-medium text-[11px] uppercase tracking-wider mt-1">Insights</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#424654] px-5 py-2 hover:text-[#0040a1] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] font-medium text-[11px] uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

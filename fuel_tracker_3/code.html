@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DriveCare - Fuel Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-fixed": "#002021",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "on-primary": "#ffffff",
+                        "on-background": "#111c2d",
+                        "outline": "#737785",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#424654",
+                        "on-primary-container": "#ccd8ff",
+                        "background": "#f9f9ff",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b2c5ff",
+                        "tertiary-fixed": "#63f7ff",
+                        "secondary": "#515f74",
+                        "outline-variant": "#c3c6d6",
+                        "surface-container": "#e7eeff",
+                        "on-tertiary-container": "#00eff9",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary": "#004f53",
+                        "surface-container-highest": "#d8e3fb",
+                        "tertiary-container": "#00696e",
+                        "on-surface": "#111c2d",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d8e3fb",
+                        "primary": "#0040a1",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#0056d2",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "tertiary-fixed-dim": "#00dce5",
+                        "on-primary-fixed": "#001847",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "primary-fixed": "#dae2ff",
+                        "on-tertiary-fixed-variant": "#004f53",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dee8ff",
+                        "secondary-container": "#d5e3fc",
+                        "surface-dim": "#cfdaf2",
+                        "on-secondary-container": "#57657a",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "inverse-surface": "#263143",
+                        "primary-container": "#0056d2",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-24 md:pb-0 pt-16">
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl flex justify-between items-center px-6 h-16 max-w-7xl mx-auto border-b-0 shadow-[0_4px_30px_rgba(17,28,45,0.03)]" style="background-color: rgba(249, 249, 255, 0.8);">
+<div class="flex items-center gap-3 text-blue-700">
+<button class="hover:bg-blue-50/50 transition-colors rounded-full p-2 active:scale-95 duration-200 ease-out">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+</button>
+<h1 class="font-manrope text-xl font-bold tracking-tighter text-blue-800">DriveCare</h1>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5-ek77quLi83DtWnVAMr1AzyktV6sWRLM0SQmlX-Rar6uBIvk87ZhhSvZkA_iNX1Bp3gbJYJvw1nGYmlaCm-d0XPMBxfrSBPuXRujEgAtyChsrUKZ0beA7xjePMVe76KT7G2KNwBZc47D5ygD7YV7iH9zIVmjVPdaLn7imPatJzee7iBCoNCe6QgSpRxLvuhE_hqm2YaDGjy9QLi9WyAw1CL8F6t-nAkoRSVIDDEmrLbOhpBHLKvkKKFN-YH-Q_38BqYivHTCBNQ"/>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 md:px-6 pt-6 pb-24">
+<div class="mb-8">
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-2 tracking-tight">Fuel Analytics</h2>
+<p class="font-body text-on-surface-variant text-sm">October 2023 Summary • Simplified Daily Driver</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_24px_rgba(17,28,45,0.04)] relative overflow-hidden group border border-outline-variant/10">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/20 rounded-full blur-xl group-hover:bg-primary-container/30 transition-colors"></div>
+<div class="flex items-center justify-between mb-2">
+<span class="font-body text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Total Spent</span>
+<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">payments</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline text-4xl font-extrabold text-on-surface">₹12,480</span>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-4 flex items-center gap-1.5 bg-surface-container-low w-fit px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[14px] text-tertiary">arrow_downward</span>
+<span class="text-tertiary font-bold">4.2%</span> <span class="opacity-70">vs last month</span>
+</p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_24px_rgba(17,28,45,0.04)] relative overflow-hidden group">
+<div class="flex items-center justify-between mb-4">
+<span class="font-body text-on-surface-variant text-sm font-medium">Total Volume</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">local_gas_station</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline text-3xl font-extrabold text-on-surface">122.4</span>
+<span class="font-headline text-lg font-semibold text-on-surface-variant">L</span>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-2">3 fill-ups this month</p>
+</div>
+<div class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-6 shadow-[0_8px_32px_rgba(0,64,161,0.15)] relative overflow-hidden text-on-primary">
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+<div class="flex items-center justify-between mb-4 relative z-10">
+<span class="font-body text-on-primary/80 text-sm font-medium">Avg. Efficiency</span>
+<div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]">speed</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 relative z-10">
+<span class="font-headline text-3xl font-extrabold text-white">14.8</span>
+<span class="font-headline text-lg font-semibold text-white/80">km/L</span>
+</div>
+<div class="mt-3 w-full bg-black/20 rounded-full h-1.5 overflow-hidden relative z-10">
+<div class="bg-tertiary-fixed h-full rounded-full" style="width: 78%"></div>
+</div>
+<p class="font-body text-[10px] text-white/70 mt-1 uppercase tracking-wider relative z-10">Target: 15.0 km/L</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_24px_rgba(17,28,45,0.04)] mb-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline text-lg font-bold text-on-surface">Efficiency Trends</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-xs font-semibold text-on-surface-variant cursor-pointer">3M</span>
+<span class="px-3 py-1 rounded-full bg-surface-container text-xs font-semibold text-on-surface cursor-pointer shadow-sm">6M</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-xs font-semibold text-on-surface-variant cursor-pointer">1Y</span>
+</div>
+</div>
+<div class="h-48 flex items-end gap-2 md:gap-4 pt-4 border-b border-outline-variant/30 pb-2 relative">
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-outline pb-2 -ml-2">
+<span>16</span>
+<span>14</span>
+<span>12</span>
+</div>
+<div class="w-full flex justify-between items-end h-full pl-6">
+<div class="w-[12%] flex flex-col items-center gap-2 group">
+<div class="w-full bg-surface-container rounded-t-md h-[60%] group-hover:bg-primary-container/40 transition-colors relative"></div>
+<span class="text-[10px] font-medium text-on-surface-variant">May</span>
+</div>
+<div class="w-[12%] flex flex-col items-center gap-2 group">
+<div class="w-full bg-surface-container rounded-t-md h-[75%] group-hover:bg-primary-container/40 transition-colors relative"></div>
+<span class="text-[10px] font-medium text-on-surface-variant">Jun</span>
+</div>
+<div class="w-[12%] flex flex-col items-center gap-2 group">
+<div class="w-full bg-surface-container rounded-t-md h-[70%] group-hover:bg-primary-container/40 transition-colors relative"></div>
+<span class="text-[10px] font-medium text-on-surface-variant">Jul</span>
+</div>
+<div class="w-[12%] flex flex-col items-center gap-2 group">
+<div class="w-full bg-surface-container rounded-t-md h-[85%] group-hover:bg-primary-container/40 transition-colors relative"></div>
+<span class="text-[10px] font-medium text-on-surface-variant">Aug</span>
+</div>
+<div class="w-[12%] flex flex-col items-center gap-2 group">
+<div class="w-full bg-surface-container rounded-t-md h-[90%] group-hover:bg-primary-container/40 transition-colors relative"></div>
+<span class="text-[10px] font-medium text-on-surface-variant">Sep</span>
+</div>
+<div class="w-[12%] flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary rounded-t-md h-[82%] relative shadow-[0_0_15px_rgba(0,64,161,0.2)]"></div>
+<span class="text-[10px] font-bold text-primary">Oct</span>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-4 px-1">
+<h3 class="font-headline text-lg font-bold text-on-surface">Recent Logs</h3>
+<button class="text-primary font-bold text-sm hover:underline">View All</button>
+</div>
+<div class="flex flex-col gap-3">
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group border border-transparent hover:border-outline-variant/20 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex flex-col items-center justify-center text-on-surface shrink-0">
+<span class="text-xs font-extrabold font-headline leading-tight">24</span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Oct</span>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface text-base">Indian Oil</p>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant mt-0.5">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">water_drop</span> 35.5 L</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-medium">15.2 km/L</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-headline font-black text-on-surface text-lg">₹3,720</span>
+<span class="inline-flex items-center gap-0.5 text-[9px] font-bold text-tertiary bg-tertiary-fixed/20 px-1.5 py-0.5 rounded-md mt-1 uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[10px] font-bold">trending_up</span> Good
+                        </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group border border-transparent hover:border-outline-variant/20 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex flex-col items-center justify-center text-on-surface shrink-0">
+<span class="text-xs font-extrabold font-headline leading-tight">10</span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Oct</span>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface text-base">Bharat Petroleum</p>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant mt-0.5">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">water_drop</span> 42.0 L</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-medium">14.1 km/L</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-headline font-black text-on-surface text-lg">₹4,410</span>
+<span class="inline-flex items-center gap-0.5 text-[9px] font-bold text-error bg-error-container/50 px-1.5 py-0.5 rounded-md mt-1 uppercase tracking-tighter">
+<span class="material-symbols-outlined text-[10px] font-bold">trending_down</span> Low
+                        </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors cursor-pointer group border border-transparent hover:border-outline-variant/20 shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex flex-col items-center justify-center text-on-surface shrink-0">
+<span class="text-xs font-extrabold font-headline leading-tight">28</span>
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">Sep</span>
+</div>
+<div>
+<p class="font-headline font-bold text-on-surface text-base">HP Petrol Pump</p>
+<div class="flex items-center gap-2 text-xs text-on-surface-variant mt-0.5">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[14px]">water_drop</span> 38.2 L</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-medium">15.0 km/L</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-headline font-black text-on-surface text-lg">₹4,350</span>
+<span class="inline-flex items-center gap-0.5 text-[9px] font-bold text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded-md mt-1 uppercase tracking-tighter">
+                            Average
+                        </span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-24 md:bottom-8 right-6 z-50">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl h-16 w-16 flex items-center justify-center shadow-[0_12px_28px_rgba(0,64,161,0.3)] hover:scale-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-[1.5rem] bg-slate-50/70 backdrop-blur-xl border-t border-white/20 shadow-[0_-4px_24px_rgba(17,28,45,0.06)] flex justify-around items-center px-4 pb-6 pt-3" style="background-color: rgba(249, 249, 255, 0.85);">
+<div class="flex flex-col items-center justify-center text-slate-500 px-5 py-2 hover:text-blue-600 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[22px]">directions_car</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-widest">Garage</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-100/80 text-blue-800 rounded-2xl px-5 py-2 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[22px]" style="font-variation-settings: 'FILL' 1;">local_gas_station</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-widest">Fuel</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-5 py-2 hover:text-blue-600 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[22px]">build</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-widest">Service</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 px-5 py-2 hover:text-blue-600 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[22px]">analytics</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-widest">Insights</span>
+</div>
+</nav>
+
+</body></html>

@@ -1,0 +1,176 @@
+<html><head>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body text-on-surface selection:bg-primary-fixed-dim min-h-screen flex flex-col items-center justify-center overflow-x-hidden">```html
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-fixed": "#d5e3fc",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#d8e3fb",
+                "on-error-container": "#93000a",
+                "tertiary-fixed-dim": "#00dce5",
+                "outline-variant": "#c3c6d6",
+                "error": "#ba1a1a",
+                "on-primary-container": "#ccd8ff",
+                "on-secondary-fixed": "#0d1c2e",
+                "inverse-primary": "#b2c5ff",
+                "secondary-container": "#d5e3fc",
+                "on-surface-variant": "#424654",
+                "surface-variant": "#d8e3fb",
+                "on-primary-fixed": "#001847",
+                "on-surface": "#111c2d",
+                "surface-bright": "#f9f9ff",
+                "on-error": "#ffffff",
+                "outline": "#737785",
+                "on-secondary-container": "#57657a",
+                "surface-container-low": "#f0f3ff",
+                "secondary": "#515f74",
+                "tertiary-container": "#00696e",
+                "primary-fixed": "#dae2ff",
+                "primary": "#0040a1",
+                "on-tertiary": "#ffffff",
+                "on-secondary-fixed-variant": "#3a485b",
+                "on-background": "#111c2d",
+                "on-primary-fixed-variant": "#0040a1",
+                "on-primary": "#ffffff",
+                "surface-container-high": "#dee8ff",
+                "surface-dim": "#cfdaf2",
+                "on-tertiary-fixed": "#002021",
+                "error-container": "#ffdad6",
+                "background": "#f9f9ff",
+                "tertiary-fixed": "#63f7ff",
+                "on-tertiary-container": "#00eff9",
+                "tertiary": "#004f53",
+                "primary-fixed-dim": "#b2c5ff",
+                "inverse-surface": "#263143",
+                "inverse-on-surface": "#ecf1ff",
+                "secondary-fixed-dim": "#b9c7df",
+                "surface-tint": "#0056d2",
+                "on-tertiary-fixed-variant": "#004f53",
+                "primary-container": "#0056d2",
+                "surface-container": "#e7eeff",
+                "surface": "#f9f9ff",
+                "surface-container-lowest": "#ffffff"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+        },
+        "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+        }
+      },
+    },
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .floating-label-input:focus-within label,
+  .floating-label-input input:not(:placeholder-shown) + label {
+    transform: translateY(-1.5rem) scale(0.85);
+    color: #0040a1;
+  }
+</style>
+<!-- Mobile Wrapper / Viewport Container -->
+<main class="w-full max-w-[440px] min-h-screen bg-surface flex flex-col relative overflow-hidden">
+<!-- Top Half: Illustration & Tagline -->
+<section class="relative h-[397px] w-full flex flex-col items-center justify-end pb-12 px-8 overflow-hidden">
+<!-- Background Decorative Elements -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-container z-0"></div>
+<div class="absolute inset-0 opacity-20 z-0">
+<img class="w-full h-full object-cover mix-blend-overlay" data-alt="Close-up of a modern luxury car's sleek metallic lines and LED headlight with a deep blue cinematic color grade" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYQYUEHHGwkRck64LRay1ykveOfQKxZsV6wUkkkXm7sCe3EkxntwSS0tGlPJe7EpJB6LIYw8M4hpcTyPM7CTFqNIGjyhb22_wYl7pDqOoYjrInEck79vKfuDhjQaTJE4taxxB2ULDslfrnC9CcV-oN-Uo1FTdS24RfSG62peb5FfeSNulzB92LvS57IBXuD6MSreAAfKaEd88oP8wAH5ne5JjBKEVbSYyZfQHHCSLIDH-AMCHf13ydtdyl7NQYloy7PYoTzMOTp_I"/>
+</div>
+<!-- Logo Branding (TopAppBar Style Ref) -->
+<div class="absolute top-12 left-8 z-10">
+<span class="font-headline text-2xl font-extrabold tracking-tight text-white">DriveCare</span>
+</div>
+<!-- Content -->
+<div class="relative z-10 text-center space-y-3">
+<h1 class="font-headline text-3xl font-extrabold text-white leading-tight">Smart care for your vehicle</h1>
+<p class="text-on-primary-container text-sm font-medium opacity-90 max-w-[240px] mx-auto">Maintain peak performance with precision digital tools.</p>
+</div>
+<!-- Asymmetrical Accent -->
+<div class="absolute -bottom-6 -right-12 w-48 h-48 bg-tertiary-fixed-dim rounded-full blur-[64px] opacity-30"></div>
+</section>
+<!-- Bottom Half: Login Form -->
+<section class="flex-1 bg-surface rounded-t-[2.5rem] -mt-10 relative z-20 px-8 pt-10 pb-12 flex flex-col">
+<form class="space-y-6 flex-1">
+<!-- Email Input -->
+<div class="relative floating-label-input group">
+<div class="bg-surface-container-low rounded-xl px-4 pt-6 pb-2 transition-all duration-300 group-focus-within:bg-surface-container">
+<input class="block w-full border-0 bg-transparent p-0 text-on-surface focus:ring-0 text-md font-medium" id="email" placeholder=" " type="email"/>
+<label class="absolute left-4 top-4 text-on-surface-variant transition-all duration-200 pointer-events-none font-medium" for="email">Email Address</label>
+</div>
+</div>
+<!-- Password Input with Error State -->
+<div class="relative floating-label-input group">
+<div class="bg-surface-container-low rounded-xl px-4 pt-6 pb-2 border-b-2 border-error/20 transition-all duration-300 group-focus-within:bg-surface-container group-focus-within:border-error">
+<input class="block w-full border-0 bg-transparent p-0 text-on-surface focus:ring-0 text-md font-medium" id="password" placeholder=" " type="password" value="••••••••"/>
+<label class="absolute left-4 top-4 text-on-surface-variant transition-all duration-200 pointer-events-none font-medium" for="password">Password</label>
+<div class="absolute right-4 top-1/2 -translate-y-1/2 mt-2 flex items-center">
+<span class="material-symbols-outlined text-error text-xl" data-icon="error">error</span>
+</div>
+</div>
+<p class="mt-2 text-xs font-medium text-error flex items-center gap-1">
+            Incorrect password. Please try again.
+          </p>
+</div>
+<div class="flex justify-end">
+<button class="text-xs font-semibold text-primary uppercase tracking-widest hover:opacity-70 transition-opacity" type="button">Forgot Password?</button>
+</div>
+<!-- Actions -->
+<div class="space-y-4 pt-4">
+<!-- Primary CTA -->
+<button class="w-full h-14 bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold rounded-xl shadow-lg shadow-primary/10 flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-95" type="submit">
+            Login
+            <span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Social Login -->
+<button class="w-full h-14 bg-secondary-container/50 text-on-secondary-container font-medium rounded-xl flex items-center justify-center gap-3 hover:bg-secondary-container transition-colors border border-outline-variant/10" type="button">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+            Continue with Google
+          </button>
+</div>
+</form>
+<!-- Footer -->
+<div class="mt-8 text-center">
+<p class="text-on-surface-variant text-sm font-medium">
+          New to DriveCare? 
+          <a class="text-primary font-bold hover:underline ml-1" href="#">Create Account</a>
+</p>
+</div>
+</section>
+<!-- Support/Help Floating Action -->
+<div class="fixed bottom-6 right-6">
+<button class="w-12 h-12 rounded-full bg-surface-container-lowest shadow-xl flex items-center justify-center text-primary-container hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+</main>
+<!-- Decorative Grainy Overlay (Optional Visual Polish) -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-multiply z-[100] bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]"></div>
+
+```</body></html>

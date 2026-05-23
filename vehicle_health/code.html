@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#263143",
+                    "inverse-primary": "#b2c5ff",
+                    "on-tertiary-fixed": "#002021",
+                    "surface-container-low": "#f0f3ff",
+                    "surface-container-high": "#dee8ff",
+                    "primary-fixed": "#dae2ff",
+                    "primary": "#0040a1",
+                    "outline-variant": "#c3c6d6",
+                    "tertiary-fixed-dim": "#00dce5",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#004f53",
+                    "surface-variant": "#d8e3fb",
+                    "inverse-on-surface": "#ecf1ff",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "outline": "#737785",
+                    "primary-fixed-dim": "#b2c5ff",
+                    "on-surface-variant": "#424654",
+                    "primary-container": "#0056d2",
+                    "on-surface": "#111c2d",
+                    "surface-container": "#e7eeff",
+                    "surface-dim": "#cfdaf2",
+                    "secondary-container": "#d5e3fc",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary-fixed": "#001847",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#00696e",
+                    "surface-tint": "#0056d2",
+                    "tertiary": "#004f53",
+                    "surface-container-highest": "#d8e3fb",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "on-primary-fixed-variant": "#0040a1",
+                    "on-primary-container": "#ccd8ff",
+                    "on-background": "#111c2d",
+                    "on-secondary-container": "#57657a",
+                    "error-container": "#ffdad6",
+                    "secondary": "#515f74",
+                    "secondary-fixed": "#d5e3fc",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#63f7ff",
+                    "surface": "#f9f9ff",
+                    "on-error": "#ffffff",
+                    "background": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#00eff9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .cubic-bezier-out { transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 dark:bg-slate-950/70 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-500 dark:text-slate-400 p-2 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-colors rounded-full" data-icon="menu">menu</button>
+<h1 class="font-manrope font-extrabold tracking-tight text-blue-900 dark:text-blue-100 text-lg">DriveCare</h1>
+</div>
+<div class="flex items-center">
+<img alt="User profile photo" class="w-10 h-10 rounded-full border-2 border-surface-container" data-alt="High-resolution close-up portrait of a professional man with a friendly expression in a modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo-z46K6H2guqISoa6BwWd-Wpv80vyl0qNfCtZowANiDLJMhqOHRcQrkz4ALkGGCzKA7Qn0X2Z20y9O6QGH7FvUdNytrt5ZMIeteeEEWTRTq-WyvgPi-HgXixSR0wtJOFppsZk8-AetDIYjVN8Rrz-1Okzb7HT2BPGELvSB97g7Ema_8TjtOHxOFSBVMpMr4SW2AdYhBc2tR6J6sPXjMmnvrdY6iRXPY36bEaV-giauGS1PT4Mv1iCdhpIHbk4b4bzpIhMR2S3gho"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-4xl mx-auto space-y-10">
+<!-- Hero Gauge Section: The Performance Gauge -->
+<section class="relative overflow-hidden bg-gradient-to-br from-primary to-primary-container rounded-xl p-8 text-on-primary shadow-2xl">
+<div class="absolute -right-16 -top-16 w-64 h-64 bg-tertiary-fixed opacity-10 rounded-full blur-3xl"></div>
+<div class="relative flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="space-y-4 text-center md:text-left">
+<h2 class="font-headline font-bold text-3xl md:text-4xl">Vehicle Health</h2>
+<p class="font-body text-on-primary-container text-opacity-90 max-w-xs">Your Model 3 Performance is in excellent condition. One minor attention required.</p>
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-on-primary/10 rounded-full backdrop-blur-md">
+<span class="material-symbols-outlined text-tertiary-fixed" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label font-semibold text-sm">System Diagnostics: OK</span>
+</div>
+</div>
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-white/10" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-tertiary-fixed drop-shadow-[0_0_8px_rgba(99,247,255,0.6)]" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552.92" stroke-dashoffset="44.23" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline font-extrabold text-5xl">92%</span>
+<span class="font-label text-xs uppercase tracking-widest text-on-primary-container">Good</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Component Grid: Bento Style -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Engine Card -->
+<div class="bg-surface-container-low p-6 rounded-xl space-y-4 hover:bg-surface-container transition-colors duration-300">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-surface-container-highest rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="engine">earth_engine</span>
+</div>
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary rounded-full text-xs font-bold uppercase tracking-tighter">Healthy</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg">Engine</h3>
+<p class="text-on-surface-variant text-sm">Oil Life: 84% • Temp: Normal</p>
+</div>
+</div>
+<!-- Brakes Card -->
+<div class="bg-surface-container-low p-6 rounded-xl space-y-4 hover:bg-surface-container transition-colors duration-300">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-surface-container-highest rounded-xl flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="minor_crash">minor_crash</span>
+</div>
+<span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-xs font-bold uppercase tracking-tighter">Attention</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg">Brakes</h3>
+<p class="text-on-surface-variant text-sm">Pad Wear: 62% • Fluid: Level OK</p>
+</div>
+</div>
+<!-- Battery Card -->
+<div class="bg-surface-container-low p-6 rounded-xl space-y-4 hover:bg-surface-container transition-colors duration-300">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-surface-container-highest rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="battery_full">battery_full</span>
+</div>
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary rounded-full text-xs font-bold uppercase tracking-tighter">Healthy</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg">Battery</h3>
+<p class="text-on-surface-variant text-sm">Voltage: 12.6V • Capacity: 98%</p>
+</div>
+</div>
+<!-- Tires Card - Critical -->
+<div class="bg-surface-container-highest p-6 rounded-xl space-y-4 outline outline-2 outline-error/20">
+<div class="flex justify-between items-start">
+<div class="w-12 h-12 bg-error-container rounded-xl flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="tire_repair" style="font-variation-settings: 'FILL' 1;">tire_repair</span>
+</div>
+<span class="px-3 py-1 bg-error text-on-error rounded-full text-xs font-bold uppercase tracking-tighter">Critical</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-surface">Tires</h3>
+<p class="text-error font-medium text-sm">Low Pressure: Rear Left (24 PSI)</p>
+</div>
+</div>
+</section>
+<!-- Health Logs: Editorial List Style -->
+<section class="space-y-6">
+<div class="flex items-end justify-between px-2">
+<div>
+<h2 class="font-headline font-extrabold text-2xl">Health Logs</h2>
+<p class="text-on-surface-variant text-sm">Chronological history of your vehicle's vitals.</p>
+</div>
+<button class="text-primary font-bold text-sm hover:underline">View History</button>
+</div>
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<!-- Log Entry 1 -->
+<div class="p-6 flex items-start gap-4 hover:bg-surface-container-high transition-colors group cursor-pointer">
+<div class="mt-1 w-2 h-2 rounded-full bg-error shrink-0"></div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-on-surface">Tire Pressure Alert</h4>
+<span class="text-xs text-on-surface-variant font-medium">OCT 24, 14:20</span>
+</div>
+<p class="text-sm text-on-surface-variant">Rear left tire pressure dropped below 26 PSI. Inspection recommended immediately.</p>
+<div class="flex gap-2 pt-2">
+<span class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] font-bold uppercase rounded-md">Safety</span>
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase rounded-md">Critical</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Log Entry 2 -->
+<div class="p-6 flex items-start gap-4 bg-surface-container-lowest/50 hover:bg-surface-container-high transition-colors group cursor-pointer border-t border-outline-variant/10">
+<div class="mt-1 w-2 h-2 rounded-full bg-tertiary shrink-0"></div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-on-surface">Oil Life Reset</h4>
+<span class="text-xs text-on-surface-variant font-medium">OCT 18, 09:12</span>
+</div>
+<p class="text-sm text-on-surface-variant">Scheduled maintenance complete. Engine oil and filter replaced at authorized center.</p>
+<div class="flex gap-2 pt-2">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase rounded-md">Maintenance</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Log Entry 3 -->
+<div class="p-6 flex items-start gap-4 hover:bg-surface-container-high transition-colors group cursor-pointer border-t border-outline-variant/10">
+<div class="mt-1 w-2 h-2 rounded-full bg-primary shrink-0"></div>
+<div class="flex-1 space-y-1">
+<div class="flex justify-between items-start">
+<h4 class="font-bold text-on-surface">Software Update Successful</h4>
+<span class="text-xs text-on-surface-variant font-medium">OCT 12, 23:45</span>
+</div>
+<p class="text-sm text-on-surface-variant">Firmware v2.4.1 applied. Enhancements to battery management and UI responsiveness.</p>
+<div class="flex gap-2 pt-2">
+<span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase rounded-md">System</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Report Issue FAB -->
+<div class="fixed bottom-28 right-6 z-40">
+<button class="flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-xl shadow-xl hover:scale-105 transition-transform cubic-bezier-out active:scale-95 group">
+<span class="material-symbols-outlined" data-icon="report_problem" style="font-variation-settings: 'FILL' 1;">report_problem</span>
+<span class="font-label font-bold uppercase text-sm tracking-wider">Report Issue</span>
+</button>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-slate-50/70 dark:bg-slate-950/70 backdrop-blur-xl rounded-t-xl z-50 shadow-[0_-4px_24px_rgba(17,28,45,0.06)]">
+<a class="flex flex-col items-center justify-center bg-blue-100/80 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-[1.25rem] px-5 py-2 transition-all duration-300 scale-110" href="#">
+<span class="material-symbols-outlined" data-icon="speed" style="font-variation-settings: 'FILL' 1;">speed</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider mt-1">Status</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="build_circle">build_circle</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider mt-1">Service</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider mt-1">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider mt-1">Account</span>
+</a>
+</nav>
+</body></html>

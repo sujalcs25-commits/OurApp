@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DriveCare - My Documents</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#263143",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "background": "#f9f9ff",
+                        "secondary-container": "#d5e3fc",
+                        "primary": "#0040a1",
+                        "outline-variant": "#c3c6d6",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#d8e3fb",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004f53",
+                        "on-primary-container": "#ccd8ff",
+                        "on-tertiary-fixed": "#002021",
+                        "surface-variant": "#d8e3fb",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "on-primary-fixed": "#001847",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#63f7ff",
+                        "surface-container-high": "#dee8ff",
+                        "on-error": "#ffffff",
+                        "secondary": "#515f74",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "tertiary-fixed-dim": "#00dce5",
+                        "on-background": "#111c2d",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface-variant": "#424654",
+                        "inverse-on-surface": "#ecf1ff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#00696e",
+                        "surface-dim": "#cfdaf2",
+                        "surface-container-low": "#f0f3ff",
+                        "on-surface": "#111c2d",
+                        "on-secondary-container": "#57657a",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "primary-container": "#0056d2",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dae2ff",
+                        "on-tertiary-container": "#00eff9",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#004f53",
+                        "surface-tint": "#0056d2",
+                        "inverse-primary": "#b2c5ff",
+                        "outline": "#737785",
+                        "surface-container": "#e7eeff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: theme('colors.surface'); color: theme('colors.on-surface'); }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass-panel { background: rgba(249, 249, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .ghost-border { border: 1px solid rgba(195, 198, 214, 0.15); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32 pt-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f9f9ff]/70 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<button aria-label="Go back" class="text-[#0040a1] hover:bg-[#f0f3ff] transition-colors p-2 rounded-full scale-95 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-manrope font-bold text-lg text-[#0040a1] text-center flex-1">Documents</h1>
+<button aria-label="More options" class="text-[#0040a1] hover:bg-[#f0f3ff] transition-colors p-2 rounded-full scale-95 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="px-6 py-4 space-y-6 max-w-3xl mx-auto">
+<!-- Summary/Hero Section -->
+<section class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline font-bold text-3xl text-on-surface mb-1">My Documents</h2>
+<p class="font-body text-sm text-on-surface-variant">3 Active • 1 Expiring Soon</p>
+</div>
+<div class="h-12 w-12 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-2xl" data-icon="folder_special" data-weight="fill" style="font-variation-settings: 'FILL' 1;">folder_special</span>
+</div>
+</section>
+<!-- Document List -->
+<section class="space-y-4">
+<!-- Document Card: Registration -->
+<article class="bg-surface-container-lowest rounded-xl p-5 flex items-start gap-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-surface-container-low opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="h-14 w-14 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant shrink-0 z-10">
+<span class="material-symbols-outlined text-2xl" data-icon="directions_car">directions_car</span>
+</div>
+<div class="flex-1 min-w-0 z-10">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-base text-on-surface truncate pr-2">Registration Certificate (RC)</h3>
+<span class="inline-flex items-center rounded-full bg-tertiary-fixed/20 px-2 py-0.5 text-[10px] font-bold text-tertiary whitespace-nowrap">Valid</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant truncate mb-2">Veh: MH-12-AB-1234</p>
+<div class="flex items-center text-xs text-on-surface-variant gap-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="calendar_today">calendar_today</span>
+<span>Exp: 14 Oct 2026</span>
+</div>
+</div>
+<button aria-label="View Document" class="p-2 -mr-2 text-on-surface-variant hover:text-primary transition-colors z-10">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</article>
+<!-- Document Card: Insurance (Expiring Soon) -->
+<article class="bg-surface-container-lowest rounded-xl p-5 flex items-start gap-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-surface-container-low opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary-fixed-dim"></div>
+<div class="h-14 w-14 rounded-lg bg-surface-container-low flex items-center justify-center text-tertiary-container shrink-0 z-10">
+<span class="material-symbols-outlined text-2xl" data-icon="shield">shield</span>
+</div>
+<div class="flex-1 min-w-0 z-10">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-base text-on-surface truncate pr-2">Insurance Policy</h3>
+<span class="inline-flex items-center rounded-full bg-[#fff4e5] px-2 py-0.5 text-[10px] font-bold text-[#b26a00] whitespace-nowrap">Expiring in 12 days</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant truncate mb-2">Veh: MH-12-AB-1234</p>
+<div class="flex items-center text-xs text-tertiary-container gap-2 font-medium">
+<span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span>
+<span>Exp: 05 Nov 2023</span>
+</div>
+</div>
+<button aria-label="View Document" class="p-2 -mr-2 text-on-surface-variant hover:text-primary transition-colors z-10">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</article>
+<!-- Document Card: License -->
+<article class="bg-surface-container-lowest rounded-xl p-5 flex items-start gap-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-surface-container-low opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="h-14 w-14 rounded-lg bg-surface-container-low flex items-center justify-center text-on-surface-variant shrink-0 z-10">
+<span class="material-symbols-outlined text-2xl" data-icon="id_card">id_card</span>
+</div>
+<div class="flex-1 min-w-0 z-10">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-base text-on-surface truncate pr-2">Driving License</h3>
+<span class="inline-flex items-center rounded-full bg-tertiary-fixed/20 px-2 py-0.5 text-[10px] font-bold text-tertiary whitespace-nowrap">Valid</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant truncate mb-2">ID: DL-14-20100012345</p>
+<div class="flex items-center text-xs text-on-surface-variant gap-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="calendar_today">calendar_today</span>
+<span>Exp: 22 Jan 2030</span>
+</div>
+</div>
+<button aria-label="View Document" class="p-2 -mr-2 text-on-surface-variant hover:text-primary transition-colors z-10">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</article>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button aria-label="Add Document" class="fixed bottom-28 right-6 h-14 w-14 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary shadow-[0_8px_24px_rgba(0,64,161,0.25)] flex items-center justify-center hover:opacity-90 transition-opacity z-40 active:scale-95">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[1.5rem] bg-[#f9f9ff]/70 backdrop-blur-xl flex justify-around items-center px-4 pb-6 pt-2 md:hidden">
+<button aria-label="Garage" class="flex flex-col items-center justify-center text-[#424654] px-5 py-2 hover:opacity-80 transition-opacity scale-110 active:scale-95 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="directions_car">directions_car</span>
+<span class="font-inter text-[11px] font-medium tracking-wide">Garage</span>
+</button>
+<button aria-label="Service" class="flex flex-col items-center justify-center text-[#424654] px-5 py-2 hover:opacity-80 transition-opacity scale-110 active:scale-95 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="build_circle">build_circle</span>
+<span class="font-inter text-[11px] font-medium tracking-wide">Service</span>
+</button>
+<button aria-label="Docs" class="flex flex-col items-center justify-center bg-[#e7eeff] text-[#0040a1] rounded-[1.5rem] px-5 py-2 hover:opacity-80 transition-opacity scale-110 active:scale-95 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="description" data-weight="fill" style="font-variation-settings: 'FILL' 1;">description</span>
+<span class="font-inter text-[11px] font-medium tracking-wide">Docs</span>
+</button>
+<button aria-label="Profile" class="flex flex-col items-center justify-center text-[#424654] px-5 py-2 hover:opacity-80 transition-opacity scale-110 active:scale-95 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-inter text-[11px] font-medium tracking-wide">Profile</span>
+</button>
+</nav>
+</body></html>

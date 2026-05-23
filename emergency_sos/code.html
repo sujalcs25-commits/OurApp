@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DriveCare - Emergency SOS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-high": "#dee8ff",
+                      "secondary-container": "#d5e3fc",
+                      "surface-dim": "#cfdaf2",
+                      "on-secondary-container": "#57657a",
+                      "inverse-on-surface": "#ecf1ff",
+                      "on-secondary-fixed-variant": "#3a485b",
+                      "on-secondary-fixed": "#0d1c2e",
+                      "inverse-surface": "#263143",
+                      "primary-container": "#0056d2",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#d8e3fb",
+                      "primary": "#0040a1",
+                      "secondary-fixed": "#d5e3fc",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#0056d2",
+                      "primary-fixed-dim": "#b2c5ff",
+                      "tertiary-fixed-dim": "#00dce5",
+                      "on-primary-fixed": "#001847",
+                      "secondary-fixed-dim": "#b9c7df",
+                      "primary-fixed": "#dae2ff",
+                      "on-tertiary-fixed-variant": "#004f53",
+                      "error": "#ba1a1a",
+                      "surface-container": "#e7eeff",
+                      "on-tertiary-container": "#00eff9",
+                      "surface-container-low": "#f0f3ff",
+                      "tertiary": "#004f53",
+                      "surface-container-highest": "#d8e3fb",
+                      "tertiary-container": "#00696e",
+                      "on-surface": "#111c2d",
+                      "on-secondary": "#ffffff",
+                      "surface": "#f9f9ff",
+                      "on-error": "#ffffff",
+                      "surface-bright": "#f9f9ff",
+                      "on-tertiary-fixed": "#002021",
+                      "on-primary-fixed-variant": "#0040a1",
+                      "on-primary": "#ffffff",
+                      "on-background": "#111c2d",
+                      "outline": "#737785",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#424654",
+                      "on-primary-container": "#ccd8ff",
+                      "background": "#f9f9ff",
+                      "error-container": "#ffdad6",
+                      "inverse-primary": "#b2c5ff",
+                      "tertiary-fixed": "#63f7ff",
+                      "secondary": "#515f74",
+                      "outline-variant": "#c3c6d6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Manrope"
+                      ],
+                      "body": [
+                              "Inter"
+                      ],
+                      "label": [
+                              "Inter"
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
+        
+        .glass-panel {
+            background: rgba(249, 249, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .sos-pulse::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50%;
+            background: rgba(186, 26, 26, 0.2);
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-24 flex flex-col">
+<!-- TopAppBar from JSON -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#f9f9ff] dark:bg-slate-950/70 backdrop-blur-xl">
+<button aria-label="Go back" class="text-[#0040a1] dark:text-blue-400 active:scale-95 duration-150 ease-in-out p-2 rounded-full hover:bg-[#e7eeff] dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_back</span>
+</button>
+<h1 class="font-manrope text-xl font-bold tracking-tight text-[#0040a1] dark:text-blue-400">Emergency SOS</h1>
+<button aria-label="Settings" class="text-[#0040a1] dark:text-blue-400 active:scale-95 duration-150 ease-in-out p-2 rounded-full hover:bg-[#e7eeff] dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 px-6 max-w-lg mx-auto w-full flex flex-col gap-8 relative z-10">
+<!-- Hero SOS Button Area -->
+<section class="flex flex-col items-center justify-center py-6">
+<div class="relative w-48 h-48 flex items-center justify-center rounded-full bg-error-container shadow-[0_8px_32px_rgba(186,26,26,0.15)] sos-pulse mb-6 group cursor-pointer">
+<div class="w-40 h-40 rounded-full bg-error text-on-error flex flex-col items-center justify-center shadow-[inset_0_-8px_16px_rgba(0,0,0,0.2)] active:scale-95 transition-transform duration-200">
+<span class="font-headline text-4xl font-extrabold tracking-widest uppercase">SOS</span>
+<span class="font-label text-sm font-medium mt-1 opacity-90">Press &amp; Hold</span>
+</div>
+</div>
+<p class="font-body text-base text-on-surface-variant text-center max-w-xs">
+                Holding for 3 seconds will instantly alert your emergency contacts and share your live location.
+            </p>
+</section>
+<!-- Location Card -->
+<section class="bg-surface-container-lowest rounded-[1.5rem] p-5 shadow-[0_8px_24px_rgba(17,28,45,0.03)] flex flex-col gap-4 border border-outline-variant/15">
+<div class="flex items-center justify-between">
+<h2 class="font-headline text-lg font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">my_location</span>
+                    Current Location
+                </h2>
+<span class="bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded-md font-label text-xs font-semibold tracking-wide uppercase">Active</span>
+</div>
+<div class="w-full h-32 rounded-xl bg-surface-container-high overflow-hidden relative" data-location="Los Angeles" style="">
+<img alt="Map View" class="w-full h-full object-cover opacity-80" data-alt="Stylized modern city map view highlighting an intersection with a blue dot indicator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPTNuOVtMT-Rx3PsUW939-XH4JN26AsNYWsHdGKQy0hLTGHfXdgsrExRbQIWrFUzzocby2FigrpAbHfwKIEOUF01Wond5nS5MwRNwJLnZwmqUbJebbnpPJBQWkD6f61sGcd1ALNZsL2ysMQxSwKu0RCll1c8JR8u9Ow_9pykmVlRsotmD3fqnsoWVLgGjoSW4HkfYRbAjVjj3Ml0El8czHuTDO4lw5-565sxEAGHkkzaxDVG2rr8EWqMLVWgqAgeVJrisIbDFs6ks"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent opacity-40"></div>
+<!-- Pin marker mock -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="w-4 h-4 bg-primary rounded-full border-2 border-white shadow-md z-10"></div>
+<div class="w-8 h-8 bg-primary/20 rounded-full absolute animate-ping"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="font-body text-sm font-semibold text-on-surface">1234 Silicon Avenue, Suite 500</p>
+<p class="font-body text-xs text-on-surface-variant">Los Angeles, CA 90015</p>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-xl font-label text-sm font-semibold uppercase tracking-wide flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[18px]">share_location</span>
+                Share Location Now
+            </button>
+</section>
+<!-- Emergency Contacts List -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="font-headline text-xl font-bold text-on-surface">Emergency Contacts</h3>
+<button class="text-primary font-label text-sm font-semibold hover:opacity-80 transition-opacity">Edit</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Contact 1 -->
+<div class="bg-surface-container-low rounded-[1.25rem] p-4 flex items-center justify-between border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline font-bold text-lg">
+                            MJ
+                        </div>
+<div class="flex flex-col">
+<span class="font-body text-base font-semibold text-on-surface">Mary Jane (Wife)</span>
+<span class="font-body text-sm text-on-surface-variant">+1 (555) 019-8234</span>
+</div>
+</div>
+<button aria-label="Call Mary Jane" class="w-10 h-10 rounded-full bg-surface-container-highest text-primary flex items-center justify-center active:scale-95 transition-transform shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+</button>
+</div>
+<!-- Contact 2 -->
+<div class="bg-surface-container-low rounded-[1.25rem] p-4 flex items-center justify-between border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-headline font-bold text-lg">
+                            DB
+                        </div>
+<div class="flex flex-col">
+<span class="font-body text-base font-semibold text-on-surface">Dr. Banner</span>
+<span class="font-body text-sm text-on-surface-variant">+1 (555) 012-4451</span>
+</div>
+</div>
+<button aria-label="Call Dr. Banner" class="w-10 h-10 rounded-full bg-surface-container-highest text-primary flex items-center justify-center active:scale-95 transition-transform shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+</button>
+</div>
+<!-- Add Contact -->
+<button class="w-full py-4 border-2 border-dashed border-outline-variant/40 rounded-[1.25rem] flex items-center justify-center gap-2 text-on-surface-variant hover:bg-surface-container-low transition-colors font-label font-medium active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                    Add Emergency Contact
+                </button>
+</div>
+</section>
+<!-- Safety Resources (Secondary Info) -->
+<section class="bg-surface-container-low rounded-[1.5rem] p-5 flex flex-col gap-3">
+<h4 class="font-headline text-sm font-bold text-on-surface">Local Services</h4>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-surface-container-lowest rounded-xl p-3 flex flex-col items-start gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.02)] active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">local_police</span>
+<span class="font-label text-sm font-semibold">Police</span>
+</button>
+<button class="bg-surface-container-lowest rounded-xl p-3 flex flex-col items-start gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.02)] active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+<span class="font-label text-sm font-semibold">Hospital</span>
+</button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar from JSON -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#f9f9ff]/80 dark:bg-slate-950/80 backdrop-blur-2xl shadow-[0_-4px_24px_rgba(17,28,45,0.06)] rounded-t-[1.5rem] md:hidden">
+<a class="flex flex-col items-center justify-center bg-[#e7eeff] dark:bg-blue-900/30 text-[#0040a1] dark:text-blue-200 rounded-[1.5rem] px-5 py-2 hover:opacity-80 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">emergency_share</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider mt-1">SOS</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#424654] dark:text-slate-500 px-5 py-2 hover:opacity-80 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">contact_phone</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider mt-1">Contacts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#424654] dark:text-slate-500 px-5 py-2 hover:opacity-80 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider mt-1">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#424654] dark:text-slate-500 px-5 py-2 hover:opacity-80 transition-opacity active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider mt-1">History</span>
+</a>
+</nav>
+</body></html>

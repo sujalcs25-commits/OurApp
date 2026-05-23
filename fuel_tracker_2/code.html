@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DriveCare - Financial Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#f9f9ff",
+                        "on-tertiary-fixed": "#002021",
+                        "on-primary-fixed-variant": "#0040a1",
+                        "on-primary": "#ffffff",
+                        "on-background": "#111c2d",
+                        "outline": "#737785",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#424654",
+                        "on-primary-container": "#ccd8ff",
+                        "background": "#f9f9ff",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#b2c5ff",
+                        "tertiary-fixed": "#63f7ff",
+                        "secondary": "#515f74",
+                        "outline-variant": "#c3c6d6",
+                        "surface-container": "#e7eeff",
+                        "on-tertiary-container": "#00eff9",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary": "#004f53",
+                        "surface-container-highest": "#d8e3fb",
+                        "tertiary-container": "#00696e",
+                        "on-surface": "#111c2d",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d8e3fb",
+                        "primary": "#0040a1",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#0056d2",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "tertiary-fixed-dim": "#00dce5",
+                        "on-primary-fixed": "#001847",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "primary-fixed": "#dae2ff",
+                        "on-tertiary-fixed-variant": "#004f53",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#dee8ff",
+                        "secondary-container": "#d5e3fc",
+                        "surface-dim": "#cfdaf2",
+                        "on-secondary-container": "#57657a",
+                        "inverse-on-surface": "#ecf1ff",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "inverse-surface": "#263143",
+                        "primary-container": "#0056d2",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .dual-axis-graph {
+            background-image: 
+                linear-gradient(to right, transparent 0%, transparent 99%, rgba(115, 119, 133, 0.1) 100%),
+                linear-gradient(to bottom, rgba(115, 119, 133, 0.1) 1px, transparent 1px);
+            background-size: 20% 25%;
+        }
+        .line-efficiency {
+            filter: drop-shadow(0 2px 4px rgba(0, 86, 210, 0.3));
+        }
+        .line-cost {
+            filter: drop-shadow(0 2px 4px rgba(0, 105, 110, 0.3));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-24 md:pb-0 pt-16">
+<header class="fixed top-0 w-full z-50 bg-slate-50/70 dark:bg-slate-950/70 backdrop-blur-xl flex justify-between items-center px-6 h-16 max-w-7xl mx-auto border-b-0 shadow-[0_4px_30px_rgba(17,28,45,0.03)]" style="background-color: rgba(249, 249, 255, 0.8);">
+<div class="flex items-center gap-3 text-blue-700 dark:text-blue-400">
+<button class="hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors rounded-full p-2 active:scale-95 duration-200 ease-out">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+</button>
+<h1 class="font-manrope text-xl font-bold tracking-tighter text-blue-800 dark:text-blue-200">DriveCare</h1>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5-ek77quLi83DtWnVAMr1AzyktV6sWRLM0SQmlX-Rar6uBIvk87ZhhSvZkA_iNX1Bp3gbJYJvw1nGYmlaCm-d0XPMBxfrSBPuXRujEgAtyChsrUKZ0beA7xjePMVe76KT7G2KNwBZc47D5ygD7YV7iH9zIVmjVPdaLn7imPatJzee7iBCoNCe6QgSpRxLvuhE_hqm2YaDGjy9QLi9WyAw1CL8F6t-nAkoRSVIDDEmrLbOhpBHLKvkKKFN-YH-Q_38BqYivHTCBNQ"/>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 md:px-6 pt-6 pb-24">
+<div class="mb-8">
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-2">Financial Analytics</h2>
+<p class="font-body text-on-surface-variant text-sm">Monthly Expenditure Overview • Oct 2023</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_24px_rgba(17,28,45,0.04)] relative overflow-hidden group border border-outline-variant/10">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary-container/20 rounded-full blur-xl group-hover:bg-primary-container/30 transition-colors"></div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-body text-on-surface-variant text-sm font-medium">Total Spent</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">account_balance_wallet</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline text-3xl font-extrabold text-on-surface">₹11,750.00</span>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-2 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">arrow_upward</span>
+<span class="text-error font-medium">12.5%</span> vs last month
+            </p>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_24px_rgba(17,28,45,0.04)] relative overflow-hidden group border border-outline-variant/10">
+<div class="flex items-center justify-between mb-4">
+<span class="font-body text-on-surface-variant text-sm font-medium">Fuel Consumed</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-low flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">local_gas_station</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="font-headline text-3xl font-extrabold text-on-surface">122.4</span>
+<span class="font-headline text-lg font-semibold text-on-surface-variant">L</span>
+</div>
+<p class="font-body text-xs text-on-surface-variant mt-2">Avg. price: ₹96.00/L</p>
+</div>
+<div class="bg-gradient-to-br from-primary to-primary-container rounded-xl p-6 shadow-[0_8px_32px_rgba(0,64,161,0.15)] relative overflow-hidden text-on-primary">
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+<div class="flex items-center justify-between mb-4 relative z-10">
+<span class="font-body text-on-primary/80 text-sm font-medium">Avg. Efficiency</span>
+<div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[20px]">bolt</span>
+</div>
+</div>
+<div class="flex items-baseline gap-1 relative z-10">
+<span class="font-headline text-3xl font-extrabold text-white">16.4</span>
+<span class="font-headline text-lg font-semibold text-white/80">km/L</span>
+</div>
+<div class="mt-3 w-full bg-black/20 rounded-full h-1.5 overflow-hidden relative z-10">
+<div class="bg-tertiary-fixed h-full rounded-full" style="width: 82%"></div>
+</div>
+<p class="font-body text-[10px] text-white/70 mt-1 uppercase tracking-wider relative z-10">Eco Mode: Active</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_4px_24px_rgba(17,28,45,0.04)] mb-8 border border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
+<div>
+<h3 class="font-headline text-lg font-bold text-on-surface">Efficiency vs Cost Impact</h3>
+<div class="flex items-center gap-4 mt-1">
+<span class="flex items-center gap-1.5 text-[10px] font-medium text-primary">
+<span class="w-2 h-2 rounded-full bg-primary"></span> Efficiency (km/L)
+                    </span>
+<span class="flex items-center gap-1.5 text-[10px] font-medium text-tertiary">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span> Price (₹/L)
+                    </span>
+</div>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container text-xs font-semibold text-on-surface cursor-pointer shadow-sm">6M Analysis</span>
+</div>
+</div>
+<div class="h-64 relative mt-4">
+<div class="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-primary/60 font-bold -translate-x-1">
+<span>18</span>
+<span>16</span>
+<span>14</span>
+<span>12</span>
+<span></span>
+</div>
+<div class="absolute right-0 top-0 h-full flex flex-col justify-between text-[10px] text-tertiary/60 font-bold translate-x-1">
+<span>₹110</span>
+<span>₹100</span>
+<span>₹90</span>
+<span>₹80</span>
+<span></span>
+</div>
+<div class="ml-6 mr-8 h-[calc(100%-20px)] relative dual-axis-graph rounded-lg overflow-hidden">
+<svg class="absolute inset-0 w-full h-full line-efficiency" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path d="M 0 75 L 20 65 L 40 70 L 60 55 L 80 40 L 100 45" fill="none" stroke="#0056d2" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<circle cx="0" cy="75" fill="#0056d2" r="1.5"></circle>
+<circle cx="20" cy="65" fill="#0056d2" r="1.5"></circle>
+<circle cx="40" cy="70" fill="#0056d2" r="1.5"></circle>
+<circle cx="60" cy="55" fill="#0056d2" r="1.5"></circle>
+<circle cx="80" cy="40" fill="#0056d2" r="1.5"></circle>
+<circle cx="100" cy="45" fill="#0056d2" r="1.5"></circle>
+</svg>
+<svg class="absolute inset-0 w-full h-full line-cost" preserveAspectRatio="none" viewBox="0 0 100 100">
+<path d="M 0 85 L 20 80 L 40 60 L 60 55 L 80 30 L 100 15" fill="none" stroke="#004f53" stroke-dasharray="2 1" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<circle cx="0" cy="85" fill="#004f53" r="1.5"></circle>
+<circle cx="20" cy="80" fill="#004f53" r="1.5"></circle>
+<circle cx="40" cy="60" fill="#004f53" r="1.5"></circle>
+<circle cx="60" cy="55" fill="#004f53" r="1.5"></circle>
+<circle cx="80" cy="30" fill="#004f53" r="1.5"></circle>
+<circle cx="100" cy="15" fill="#004f53" r="1.5"></circle>
+</svg>
+</div>
+<div class="flex justify-between ml-6 mr-8 mt-4 text-[10px] font-medium text-on-surface-variant">
+<span>May</span>
+<span>Jun</span>
+<span>Jul</span>
+<span>Aug</span>
+<span>Sep</span>
+<span>Oct</span>
+</div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-4 px-1">
+<h3 class="font-headline text-lg font-bold text-on-surface">Expense Ledger</h3>
+<button class="text-primary font-medium text-sm hover:underline">Download CSV</button>
+</div>
+<div class="flex flex-col gap-3">
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between hover:bg-surface-container-low/50 transition-colors cursor-pointer group border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex flex-col items-center justify-center text-on-surface">
+<span class="text-xs font-bold font-headline leading-tight">24</span>
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Oct</span>
+</div>
+<div>
+<p class="font-headline font-semibold text-on-surface text-base">IndianOil Mart</p>
+<div class="flex items-center gap-3 text-xs text-on-surface-variant mt-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">water_drop</span> 42.5 L</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-medium text-on-surface">₹4,080.00</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-headline font-bold text-on-surface text-base">16.8 <span class="text-xs text-on-surface-variant font-medium">km/L</span></span>
+<span class="inline-flex items-center gap-0.5 text-[10px] font-bold text-tertiary bg-tertiary-fixed/20 px-1.5 py-0.5 rounded mt-1">
+<span class="material-symbols-outlined text-[12px]">trending_up</span> Good
+                    </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between hover:bg-surface-container-low/50 transition-colors cursor-pointer group border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex flex-col items-center justify-center text-on-surface">
+<span class="text-xs font-bold font-headline leading-tight">10</span>
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Oct</span>
+</div>
+<div>
+<p class="font-headline font-semibold text-on-surface text-base">Bharat Petroleum</p>
+<div class="flex items-center gap-3 text-xs text-on-surface-variant mt-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">water_drop</span> 38.0 L</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-medium text-on-surface">₹3,648.00</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-headline font-bold text-on-surface text-base">15.4 <span class="text-xs text-on-surface-variant font-medium">km/L</span></span>
+<span class="inline-flex items-center gap-0.5 text-[10px] font-bold text-error bg-error-container/50 px-1.5 py-0.5 rounded mt-1">
+<span class="material-symbols-outlined text-[12px]">trending_down</span> Below Avg
+                    </span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-4 flex items-center justify-between hover:bg-surface-container-low/50 transition-colors cursor-pointer group border border-outline-variant/10">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex flex-col items-center justify-center text-on-surface">
+<span class="text-xs font-bold font-headline leading-tight">28</span>
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Sep</span>
+</div>
+<div>
+<p class="font-headline font-semibold text-on-surface text-base">HP Petrol Pump</p>
+<div class="flex items-center gap-3 text-xs text-on-surface-variant mt-1">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">water_drop</span> 41.9 L</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="font-medium text-on-surface">₹4,022.40</span>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col items-end">
+<span class="font-headline font-bold text-on-surface text-base">16.2 <span class="text-xs text-on-surface-variant font-medium">km/L</span></span>
+<span class="inline-flex items-center gap-0.5 text-[10px] font-bold text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded mt-1">
+<span class="material-symbols-outlined text-[12px]">horizontal_rule</span> Average
+                    </span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-24 md:bottom-8 right-6 z-50">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl h-14 w-14 flex items-center justify-center shadow-[0_8px_24px_rgba(0,64,161,0.25)] hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">add_card</span>
+</button>
+</div>
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-[1.5rem] bg-slate-50/70 dark:bg-slate-950/70 backdrop-blur-xl border-t-0 shadow-[0_-4px_24px_rgba(17,28,45,0.06)] flex justify-around items-center px-4 pb-6 pt-3" style="background-color: rgba(249, 249, 255, 0.85);">
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[22px]">directions_car</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-widest">Garage</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[22px]">local_gas_station</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-widest">Fuel</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-blue-100/80 dark:bg-blue-900/40 text-blue-800 dark:text-blue-100 rounded-2xl px-5 py-2 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[22px]" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-widest">Finances</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-[22px]">settings</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-widest">Setup</span>
+</div>
+</nav>
+
+</body></html>
