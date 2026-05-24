@@ -13,8 +13,8 @@ const express  = require('express');
 const mongoose = require('mongoose');
 
 const auth   = require('../middleware/authMiddleware');
-const User   = require('../models/User');
-const SosLog = require('../models/SosLog');
+const User   = require('../models/User-hybrid');
+const SosLog = require('../models/SosLog-hybrid');
 
 const router = express.Router();
 

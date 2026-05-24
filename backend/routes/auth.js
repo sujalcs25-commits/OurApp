@@ -7,8 +7,8 @@
 
 const express = require('express');
 
-const User    = require('../models/User');
-const Vehicle = require('../models/Vehicle');
+const User    = require('../models/User-hybrid');
+const Vehicle = require('../models/Vehicle-hybrid');
 const { signToken }                  = require('../utils/jwt');
 const { hashPassword, verifyPassword } = require('../utils/password');
 

@@ -9,6 +9,7 @@ import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { fetchVehicles, addServiceLog, updateServiceLog } from '../services/api';
 
+import UniversalAlert from '../utils/alert';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 
@@ -109,7 +110,7 @@ const ServiceRemindersScreen = () => {
         return data.find(v => v.isPrimary) || data[0];
       });
     } catch (err) {
-      Alert.alert('Error', 'Could not load garage data.');
+      UniversalAlert.alert('Error', 'Could not load garage data.');
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -120,8 +121,8 @@ const ServiceRemindersScreen = () => {
   const resetForm = () => { setType(''); setDescription(''); setServiceDate(''); setShowPicker(false); };
 
   const handleAdd = async () => {
-    if (!type.trim())        { Alert.alert('Missing', 'Please enter the service type.');   return; }
-    if (!selectedVehicle)    { Alert.alert('Missing', 'No vehicle selected.');             return; }
+    if (!type.trim())        { UniversalAlert.alert('Missing', 'Please enter the service type.');   return; }
+    if (!selectedVehicle)    { UniversalAlert.alert('Missing', 'No vehicle selected.');             return; }
 
     try {
       setSaving(true);
@@ -136,7 +137,7 @@ const ServiceRemindersScreen = () => {
       await loadData(true);
     } catch (err) {
       const msg = err?.response?.data?.msg || err?.message || 'Failed to add service.';
-      Alert.alert('Error', msg);
+      UniversalAlert.alert('Error', msg);
     } finally {
       setSaving(false);
     }
@@ -149,7 +150,7 @@ const ServiceRemindersScreen = () => {
       await updateServiceLog(vId, logId, { status });
       await loadData(true);
     } catch {
-      Alert.alert('Error', 'Status update failed.');
+      UniversalAlert.alert('Error', 'Status update failed.');
     }
   };
 

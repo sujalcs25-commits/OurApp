@@ -7,6 +7,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { fetchVehicles, addFuelLog } from '../services/api';
 import { formatINR } from '../utils/currency';
 
+import UniversalAlert from '../utils/alert';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 
@@ -39,7 +40,7 @@ export default function FuelTrackerScreen() {
       if (data.length > 0) setSelectedVehicle(data[0]);
     } catch (error) {
       console.error(error);
-      Alert.alert('Error', 'Unable to fetch fuel history.');
+      UniversalAlert.alert('Error', 'Unable to fetch fuel history.');
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -95,10 +96,10 @@ export default function FuelTrackerScreen() {
     const parsedAmount = parseFloat(amount);
     const parsedCost = parseFloat(cost);
 
-    if (!amount || !cost) { Alert.alert('Error', 'Please enter both amount and cost.'); return; }
-    if (isNaN(parsedAmount) || parsedAmount <= 0) { Alert.alert('Error', 'Volume must be a positive number.'); return; }
-    if (isNaN(parsedCost) || parsedCost <= 0) { Alert.alert('Error', 'Cost must be a positive number.'); return; }
-    if (!selectedVehicle) { Alert.alert('Error', 'No vehicle selected to add fuel.'); return; }
+    if (!amount || !cost) { UniversalAlert.alert('Error', 'Please enter both amount and cost.'); return; }
+    if (isNaN(parsedAmount) || parsedAmount <= 0) { UniversalAlert.alert('Error', 'Volume must be a positive number.'); return; }
+    if (isNaN(parsedCost) || parsedCost <= 0) { UniversalAlert.alert('Error', 'Cost must be a positive number.'); return; }
+    if (!selectedVehicle) { UniversalAlert.alert('Error', 'No vehicle selected to add fuel.'); return; }
 
     try {
       setAddingFuel(true);
@@ -107,7 +108,7 @@ export default function FuelTrackerScreen() {
       setAmount(''); setCost(''); setOdometer('');
       await loadData(true);
     } catch (error) {
-      Alert.alert('Error', error?.response?.data?.msg || 'Failed to add fuel log.');
+      UniversalAlert.alert('Error', error?.response?.data?.msg || 'Failed to add fuel log.');
     } finally {
       setAddingFuel(false);
     }
@@ -211,7 +212,7 @@ export default function FuelTrackerScreen() {
              showsVerticalScrollIndicator={false}
              refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => loadData(true)} tintColor="#0040a1" />}
              data={stats.logs}
-             keyExtractor={(item) => item.id.toString()}
+             keyExtractor={(item) => (item.id || item._id || Math.random().toString()).toString()}
              ListHeaderComponent={renderHeader}
              renderItem={renderLogItem}
              ListEmptyComponent={

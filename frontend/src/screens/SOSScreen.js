@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Alert, ActivityIndicator, ScrollView, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
+import UniversalAlert from '../utils/alert';
 import Animated, { useSharedValue, useAnimatedStyle, withRepeat, withTiming, withSequence, withSpring, cancelAnimation, FadeInDown } from 'react-native-reanimated';
 import { triggerSOS, updateSOSLocation, stopSOS, fetchContacts } from '../services/api';
 
@@ -99,7 +100,7 @@ export default function SOSScreen({ navigation }) {
     if (!Location) { setLocationError(true); return null; }
     try {
       const { status: perm } = await Location.requestForegroundPermissionsAsync();
-      if (perm !== 'granted') { setLocationError(true); Alert.alert('Location Permission Required', 'Enable location access so your contacts receive your exact position.', [{ text: 'Cancel', style: 'cancel' }, { text: 'Settings', onPress: () => Linking.openSettings() }]); return null; }
+      if (perm !== 'granted') { setLocationError(true); UniversalAlert.alert('Location Permission Required', 'Enable location access so your contacts receive your exact position.', [{ text: 'Cancel', style: 'cancel' }, { text: 'Settings', onPress: () => Linking.openSettings() }]); return null; }
       const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High });
       setLocationError(false);
       return { lat: loc.coords.latitude, lng: loc.coords.longitude };
@@ -128,11 +129,11 @@ export default function SOSScreen({ navigation }) {
         const updated = await getLocation();
         if (updated && sosIdRef.current) { setLastLocation(updated); try { await updateSOSLocation(sosIdRef.current, updated.lat, updated.lng); } catch { /* retry next tick */ } }
       }, LOCATION_INTERVAL_MS);
-    } catch (err) { setStatus('error'); Alert.alert('SOS Failed', err?.response?.data?.msg || 'Could not send SOS. Check your connection and try again.'); }
+    } catch (err) { setStatus('error'); UniversalAlert.alert('SOS Failed', err?.response?.data?.msg || 'Could not send SOS. Check your connection and try again.'); }
   };
 
   const handleStop = () => {
-    Alert.alert('Stop SOS?', 'This will stop sharing your location with emergency contacts.', [
+    UniversalAlert.alert('Stop SOS?', 'This will stop sharing your location with emergency contacts.', [
       { text: 'Keep Active', style: 'cancel' },
       { text: 'Stop SOS', style: 'destructive', onPress: async () => { clearInterval(locationRef.current); setStatus('stopping'); try { if (sosIdRef.current) await stopSOS(sosIdRef.current); } catch { /* best-effort */ } sosIdRef.current = null; setStatus('idle'); setSmsSent(0); } },
     ]);
@@ -145,7 +146,7 @@ export default function SOSScreen({ navigation }) {
   return (
     <SafeAreaView className="flex-1 bg-[#ba1a1a]" edges={['top', 'bottom']}>
       <View className="flex-row items-center justify-between px-6 py-4">
-        <TouchableOpacity onPress={() => { if (isActive) { Alert.alert('SOS is Active', 'Stop SOS before leaving.'); return; } if (isCountdown) cancelCountdown(); navigation.goBack(); }} className="w-10 h-10 items-center justify-center bg-white/10 rounded-full">
+        <TouchableOpacity onPress={() => { if (isActive) { UniversalAlert.alert('SOS is Active', 'Stop SOS before leaving.'); return; } if (isCountdown) cancelCountdown(); navigation.goBack(); }} className="w-10 h-10 items-center justify-center bg-white/10 rounded-full">
           <MaterialIcons name="close" size={24} color="#fff" />
         </TouchableOpacity>
         <Text className="text-lg font-extrabold text-white">Emergency Assist</Text>

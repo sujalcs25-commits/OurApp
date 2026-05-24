@@ -6,6 +6,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import UniversalAlert from '../utils/alert';
 import { setApiUrl, testApiConnection } from '../services/api';
 
 export default function SetupScreen({ navigation }) {
@@ -15,7 +16,7 @@ export default function SetupScreen({ navigation }) {
 
   const handleTest = async () => {
     if (!apiUrl.trim()) {
-      Alert.alert('Error', 'Please enter a backend URL');
+      UniversalAlert.alert('Error', 'Please enter a backend URL');
       return;
     }
 
@@ -24,7 +25,7 @@ export default function SetupScreen({ navigation }) {
     setTesting(false);
 
     if (result.success) {
-      Alert.alert(
+      UniversalAlert.alert(
         'Connection Successful! ✅',
         'Backend server is reachable. You can now save this URL and start using the app.',
         [
@@ -35,7 +36,7 @@ export default function SetupScreen({ navigation }) {
         ]
       );
     } else {
-      Alert.alert(
+      UniversalAlert.alert(
         'Connection Failed ❌',
         `Error: ${result.error}\n\nPlease check:\n• URL is correct\n• Backend server is running\n• You have internet connection`,
         [{ text: 'OK' }]
@@ -45,7 +46,7 @@ export default function SetupScreen({ navigation }) {
 
   const handleSave = async () => {
     if (!apiUrl.trim()) {
-      Alert.alert('Error', 'Please enter a backend URL');
+      UniversalAlert.alert('Error', 'Please enter a backend URL');
       return;
     }
 
@@ -59,7 +60,7 @@ export default function SetupScreen({ navigation }) {
   };
 
   const handleSkip = async () => {
-    Alert.alert(
+    UniversalAlert.alert(
       'Skip Setup?',
       'You can configure the backend URL later in Settings. The app may not work until configured.',
       [

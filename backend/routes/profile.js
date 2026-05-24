@@ -8,7 +8,7 @@
 
 const express = require('express');
 const auth    = require('../middleware/authMiddleware');
-const User    = require('../models/User');
+const User    = require('../models/User-hybrid');
 const { hashPassword, verifyPassword } = require('../utils/password');
 
 const router = express.Router();

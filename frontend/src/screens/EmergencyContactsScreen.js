@@ -5,6 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, FadeInDown } from 'react-native-reanimated';
 import { fetchContacts, addContact, updateContact, deleteContact } from '../services/api';
 
+import UniversalAlert from '../utils/alert';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 
@@ -56,7 +57,7 @@ export default function EmergencyContactsScreen({ navigation }) {
       const data = await fetchContacts();
       setContacts(data);
     } catch {
-      Alert.alert('Error', 'Could not load emergency contacts.');
+      UniversalAlert.alert('Error', 'Could not load emergency contacts.');
     } finally {
       setLoading(false);
     }
@@ -68,8 +69,8 @@ export default function EmergencyContactsScreen({ navigation }) {
   const openEdit = (contact) => { setEditingContact(contact); setName(contact.name); setPhone(contact.phone); setModalVisible(true); };
 
   const validate = () => {
-    if (!name.trim()) { Alert.alert('Error', 'Name is required'); return false; }
-    if (!phone.trim() || !PHONE_RE.test(phone)) { Alert.alert('Error', 'Enter a valid phone number'); return false; }
+    if (!name.trim()) { UniversalAlert.alert('Error', 'Name is required'); return false; }
+    if (!phone.trim() || !PHONE_RE.test(phone)) { UniversalAlert.alert('Error', 'Enter a valid phone number'); return false; }
     return true;
   };
 
@@ -85,11 +86,11 @@ export default function EmergencyContactsScreen({ navigation }) {
         setContacts((prev) => [...prev, created]);
       }
       setModalVisible(false);
-    } catch (err) { Alert.alert('Error', err?.response?.data?.msg || 'Failed to save contact.'); } finally { setSaving(false); }
+    } catch (err) { UniversalAlert.alert('Error', err?.response?.data?.msg || 'Failed to save contact.'); } finally { setSaving(false); }
   };
 
   const handleDelete = (contact) => {
-    Alert.alert('Remove Contact', `Remove ${contact.name} from emergency contacts?`, [
+    UniversalAlert.alert('Remove Contact', `Remove ${contact.name} from emergency contacts?`, [
       { text: 'Cancel', style: 'cancel' },
       {
         text: 'Remove', style: 'destructive',
@@ -97,7 +98,7 @@ export default function EmergencyContactsScreen({ navigation }) {
           try {
             await deleteContact(contact.id);
             setContacts((prev) => prev.filter((c) => c.id !== contact.id));
-          } catch { Alert.alert('Error', 'Could not delete contact.'); }
+          } catch { UniversalAlert.alert('Error', 'Could not delete contact.'); }
         },
       },
     ]);

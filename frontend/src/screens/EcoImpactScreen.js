@@ -144,7 +144,7 @@ export default function EcoImpactScreen() {
       ) : (
         <FlatList
           data={ecoStats.logs}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item, index) => (item.id || item._id || index).toString()}
           renderItem={renderLog}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => loadData(true)} tintColor="#1a6b2f" />}
           contentContainerStyle={{ paddingBottom: Math.max(tabBarHeight + 24, 110), paddingHorizontal: 24 }}

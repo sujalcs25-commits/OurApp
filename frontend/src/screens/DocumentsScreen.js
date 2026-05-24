@@ -5,6 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { fetchVehicles, addDocumentLog, updateDocumentLog, deleteDocumentLog } from '../services/api';
 
+import UniversalAlert from '../utils/alert';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 
@@ -53,7 +54,7 @@ const DocumentsScreen = ({ navigation }) => {
         setSelectedVehicle(data.find(v => v.isPrimary) || data[0]);
       }
     } catch (error) {
-      Alert.alert('Error', 'Unable to fetch documents.');
+      UniversalAlert.alert('Error', 'Unable to fetch documents.');
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -61,8 +62,8 @@ const DocumentsScreen = ({ navigation }) => {
   };
 
   const handleSaveDocument = async () => {
-    if (!title.trim()) { Alert.alert('Error', 'Title is mandatory.'); return; }
-    if (!selectedVehicle) { Alert.alert('Error', 'Select a vehicle.'); return; }
+    if (!title.trim()) { UniversalAlert.alert('Error', 'Title is mandatory.'); return; }
+    if (!selectedVehicle) { UniversalAlert.alert('Error', 'Select a vehicle.'); return; }
 
     try {
       setSaving(true);
@@ -79,14 +80,14 @@ const DocumentsScreen = ({ navigation }) => {
       resetForm();
       await loadData(true);
     } catch (error) {
-      Alert.alert('Error', 'Failed to sync document.');
+      UniversalAlert.alert('Error', 'Failed to sync document.');
     } finally {
       setSaving(false);
     }
   };
 
   const handleDelete = (docId) => {
-    Alert.alert(
+    UniversalAlert.alert(
       'Delete Document',
       'Are you sure you want to remove this record?',
       [
@@ -99,7 +100,7 @@ const DocumentsScreen = ({ navigation }) => {
                await deleteDocumentLog(selectedVehicle.id || selectedVehicle._id, docId);
                await loadData(true);
              } catch {
-               Alert.alert('Error', 'Delete failed.');
+               UniversalAlert.alert('Error', 'Delete failed.');
              }
           }
         }

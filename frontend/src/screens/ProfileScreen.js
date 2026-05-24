@@ -8,6 +8,7 @@ import { fetchProfile, updateProfile, changePassword } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 
+import UniversalAlert from '../utils/alert';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 
@@ -102,7 +103,7 @@ export default function ProfileScreen({ navigation }) {
   };
 
   const handleLogout = () => {
-    Alert.alert('Log Out', 'Are you sure you want to log out?', [
+    UniversalAlert.alert('Log Out', 'Are you sure you want to log out?', [
       { text: 'Cancel', style: 'cancel' },
       { text: 'Log Out', style: 'destructive', onPress: async () => await logout() },
     ]);

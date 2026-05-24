@@ -2,6 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 const app = require('../server');
+const connectDB = require('../config/db');
 const { writeStore } = require('../data/store');
 
 let server;
@@ -9,6 +10,8 @@ let baseUrl;
 
 test.before(async () => {
   process.env.JWT_SECRET = 'test_secret_key';
+  process.env.FORCE_FALLBACK = 'true';
+  await connectDB();
   await writeStore({ users: [], vehicles: [] });
 
   server = app.listen(0);
@@ -54,6 +57,9 @@ test('registers a user with a vehicle, logs in, and returns scoped vehicles', as
     }),
   });
 
+  if (registerResponse.status !== 201) {
+    console.log('Register failed:', registerResponse.status, await registerResponse.json());
+  }
   assert.equal(registerResponse.status, 201);
   const registeredUser = await registerResponse.json();
   assert.ok(registeredUser.token);

@@ -15,8 +15,8 @@ let useFallback = false;
 async function connectDB() {
   const uri = process.env.MONGODB_URI;
 
-  if (!uri) {
-    console.warn('[DB] MONGODB_URI not set — using fallback JSON storage');
+  if (!uri || process.env.FORCE_FALLBACK === 'true') {
+    console.warn('[DB] ' + (process.env.FORCE_FALLBACK === 'true' ? 'FORCED' : 'MONGODB_URI not set') + ' — using fallback JSON storage');
     useFallback = true;
     return;
   }

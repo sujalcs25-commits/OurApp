@@ -5,6 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, FadeInDown } from 'react-native-reanimated';
 import { fetchVehicles, addVehicle, updateVehicle, deleteVehicle, setPrimaryVehicle } from '../services/api';
 
+import UniversalAlert from '../utils/alert';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 
@@ -224,7 +225,7 @@ export default function MyVehiclesScreen({ navigation }) {
       const data = await fetchVehicles();
       setVehicles(data);
     } catch {
-      Alert.alert('Error', 'Failed to load vehicles. Check your connection.');
+      UniversalAlert.alert('Error', 'Failed to load vehicles. Check your connection.');
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -262,7 +263,7 @@ export default function MyVehiclesScreen({ navigation }) {
     if (!model.trim()) { setModelErr('Model is required'); valid = false; } else setModelErr('');
     
     if (!valid) {
-      Alert.alert('Validation Error', 'Please fill in the required fields (Make and Model).');
+      UniversalAlert.alert('Validation Error', 'Please fill in the required fields (Make and Model).');
       return;
     }
 
@@ -284,14 +285,14 @@ export default function MyVehiclesScreen({ navigation }) {
       setFormVisible(false);
       await loadVehicles();
     } catch (err) {
-      Alert.alert('Error', err?.response?.data?.msg || 'Failed to save vehicle.');
+      UniversalAlert.alert('Error', err?.response?.data?.msg || 'Failed to save vehicle.');
     } finally {
       setSubmitting(false);
     }
   };
 
   const handleDelete = (vehicle) => {
-    Alert.alert(
+    UniversalAlert.alert(
       '🚨 Permanent Deletion!',
       `You are about to delete the ${vehicle.make} ${vehicle.model}.\n\nThis will PERMANENTLY remove:\n• All Fuel Logs\n• All Service Records\n• All Digital Documents\n\nThis action cannot be undone. Are you sure?`,
       [
@@ -303,8 +304,8 @@ export default function MyVehiclesScreen({ navigation }) {
               setLoading(true);
               await deleteVehicle(vehicle.id);
               setVehicles((prev) => prev.filter((v) => v.id !== vehicle.id));
-              Alert.alert('Success', 'Vehicle and all related data removed.');
-            } catch { Alert.alert('Error', 'Could not delete vehicle.'); }
+              UniversalAlert.alert('Success', 'Vehicle and all related data removed.');
+            } catch { UniversalAlert.alert('Error', 'Could not delete vehicle.'); }
             finally { setLoading(false); }
           },
         },
@@ -316,7 +317,7 @@ export default function MyVehiclesScreen({ navigation }) {
     try {
       await setPrimaryVehicle(vehicle.id);
       setVehicles((prev) => prev.map((v) => ({ ...v, isPrimary: v.id === vehicle.id })));
-    } catch { Alert.alert('Error', 'Could not set primary vehicle.'); }
+    } catch { UniversalAlert.alert('Error', 'Could not set primary vehicle.'); }
   };
 
   return (

@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const auth    = require('../middleware/authMiddleware');
-const Vehicle = require('../models/Vehicle');
+const Vehicle = require('../models/Vehicle-hybrid');
 
 const router = express.Router();
 
