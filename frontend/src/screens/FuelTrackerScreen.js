@@ -38,10 +38,9 @@ export default function FuelTrackerScreen() {
       const data = await fetchVehicles();
       setVehicles(data);
       
-      // Select primary vehicle or first vehicle
+      // Use first vehicle for storing fuel logs (backend requirement)
       if (data.length > 0) {
-        const primaryVehicle = data.find(v => v.isPrimary) || data[0];
-        setSelectedVehicle(primaryVehicle);
+        setSelectedVehicle(data[0]);
       }
     } catch (error) {
       console.error(error);
@@ -110,12 +109,12 @@ export default function FuelTrackerScreen() {
               <Text className="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">{dateObj.toLocaleString('en-IN', { month: 'short' })}</Text>
             </View>
             <View>
-              <Text className="font-bold text-on-surface text-base">Fill-up</Text>
-              <Text className="text-xs text-on-surface-variant mt-1 font-medium">{log.amount} L • {formatINR(log.cost)}</Text>
+              <Text className="font-bold text-on-surface text-base">Fuel Fill-up</Text>
+              <Text className="text-xs text-on-surface-variant mt-1 font-medium">{log.amount} L</Text>
             </View>
           </View>
-          <View className="items-end bg-surface-container-low px-3 py-2 rounded-lg">
-            <Text className="font-extrabold text-primary text-base">{log.odometer ? `${log.odometer} ` : '-'}<Text className="text-xs text-primary font-medium">km</Text></Text>
+          <View className="items-end">
+            <Text className="font-extrabold text-primary text-lg">{formatINR(log.cost)}</Text>
           </View>
         </TouchableOpacity>
       </Animated.View>
@@ -125,7 +124,7 @@ export default function FuelTrackerScreen() {
   const renderHeader = () => (
     <Animated.View entering={FadeInDown.duration(600).springify()}>
       <View className="mb-6">
-        <Text className="font-extrabold text-3xl text-on-surface">Fuel Analytics</Text>
+        <Text className="font-extrabold text-3xl text-on-surface">Fuel Expenses</Text>
         <Text className="text-on-surface-variant text-sm mt-1 font-medium">{currentMonth} Summary</Text>
       </View>
 
@@ -162,36 +161,8 @@ export default function FuelTrackerScreen() {
           <TouchableOpacity className="w-10 h-10 rounded-full bg-surface-container-highest items-center justify-center -ml-2">
             <MaterialIcons name="local-gas-station" size={20} color="#0040a1" />
           </TouchableOpacity>
-          <Text className="text-xl font-extrabold tracking-tight text-on-surface">Fuel Tracker</Text>
+          <Text className="text-xl font-extrabold tracking-tight text-on-surface">Fuel Expenses</Text>
         </View>
-        
-        {/* Vehicle Selector */}
-        {vehicles.length > 1 ? (
-          <View className="flex-row gap-2">
-            {vehicles.map((vehicle) => {
-              const isSelected = selectedVehicle?.id === vehicle.id || selectedVehicle?._id === vehicle._id;
-              return (
-                <TouchableOpacity
-                  key={vehicle.id || vehicle._id}
-                  onPress={() => setSelectedVehicle(vehicle)}
-                  className={`py-1.5 px-3 rounded-full border ${
-                    isSelected 
-                      ? 'bg-primary border-primary' 
-                      : 'bg-surface border-outline-variant/30'
-                  }`}
-                >
-                  <Text className={`text-xs font-bold ${isSelected ? 'text-white' : 'text-on-surface-variant'}`}>
-                    {vehicle.licensePlate}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        ) : (
-          <View className="bg-primary/10 py-1 px-3 rounded-full border border-primary/20">
-            <Text className="text-primary text-xs font-bold">{selectedVehicle ? selectedVehicle.licensePlate : 'Garage'}</Text>
-          </View>
-        )}
       </View>
 
       {loading && !refreshing ? (
@@ -238,9 +209,8 @@ export default function FuelTrackerScreen() {
                 </TouchableOpacity>
              </View>
              
-             <Input label="Cost (₹)" placeholder="e.g. 3500.00" keyboardType="numeric" value={cost} onChangeText={setCost} icon="currency-rupee" />
-             <Input label="Volume (Liters)" placeholder="e.g. 35.5" keyboardType="numeric" value={amount} onChangeText={setAmount} icon="water-drop" />
-             <Input label="Odometer (km)" placeholder="Optional" keyboardType="numeric" value={odometer} onChangeText={setOdometer} icon="speed" />
+             <Input label="Amount Spent (₹)" placeholder="e.g. 3500.00" keyboardType="numeric" value={cost} onChangeText={setCost} icon="currency-rupee" />
+             <Input label="Fuel Volume (Liters)" placeholder="e.g. 35.5" keyboardType="numeric" value={amount} onChangeText={setAmount} icon="water-drop" />
 
              <View className="mt-4">
                 <Button title="Save Record" onPress={handleAddFuel} loading={addingFuel} icon="save" />
