@@ -1,112 +1,173 @@
 # 🚗 DriveCare — Smart Vehicle Management App
 
-> A full-stack mobile application for managing your vehicles, tracking fuel, scheduling services, monitoring eco impact, and triggering emergency SOS alerts.
+> A full-stack mobile application for managing your vehicles, tracking fuel expenses, scheduling services, storing documents, and emergency SOS alerts.
+
+[![React Native](https://img.shields.io/badge/React%20Native-0.81-blue.svg)](https://reactnative.dev/)
+[![Expo](https://img.shields.io/badge/Expo-~54.0-black.svg)](https://expo.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-brightgreen.svg)](https://www.mongodb.com/)
 
 ---
 
-## 📌 Project Description
+## 📌 Overview
 
-DriveCare is a React Native (Expo) + Node.js + MongoDB application that helps vehicle owners in India manage everything about their cars from one clean dashboard.
+DriveCare is a comprehensive vehicle management solution built with React Native (Expo) and Node.js. It helps vehicle owners track expenses, manage maintenance, store important documents, and access emergency services—all from one beautiful, intuitive interface.
 
----
-
-## 🚀 Features
-
-| Feature | Description |
-|---------|-------------|
-| 🔐 Authentication | Secure register / login with JWT tokens |
-| 🚗 Garage | Add, edit, delete vehicles with fuel type, service dates, and odometer |
-| ⛽ Fuel Tracker | Log fill-ups, track total spend and average efficiency (km/L) |
-| 🔧 Service Reminders | Log maintenance history, set next service due date / km |
-| 🏥 Vehicle Health | Battery, range, tire pressure diagnostics |
-| 📄 Documents | Store insurance, registration, and other vehicle documents |
-| 🌱 Eco Impact | Calculate CO₂ saved after servicing, earn eco badges |
-| 🚨 SOS Emergency | One-tap SOS with live GPS sharing to emergency contacts via SMS (Twilio) |
-| 👤 Profile | Edit name, phone, change password |
+**Live Demo:** [https://drive-care.onrender.com](https://drive-care.onrender.com)
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Key Features
 
-**Frontend**
-- React Native (Expo SDK 54)
-- NativeWind v4 (Tailwind CSS for React Native)
-- React Navigation (Stack + Bottom Tabs)
-- Expo Location
-- Axios
-- React Native Reanimated
+### 🏠 **Smart Dashboard**
+- View primary vehicle at a glance
+- Quick access to all features
+- Upcoming service reminders
+- Eco impact summary
 
-**Backend**
-- Node.js + Express v5
-- MongoDB Atlas + Mongoose
-- JSON Web Tokens (JWT)
-- Twilio REST API (optional — for SOS SMS)
+### ⛽ **Fuel Expense Tracker**
+- Log fuel purchases with amount and cost
+- Track total spending over time
+- View detailed fuel history
+- Edit and delete fuel records
+
+### 🔧 **Service Management**
+- Schedule maintenance reminders
+- Track service history
+- Mark services as completed
+- Restore completed services
+
+### 📄 **Document Vault**
+- Store vehicle documents securely
+- Set expiry date reminders
+- Visual indicators for expired documents
+- Edit and delete documents
+
+### 🌱 **Eco Impact Monitor**
+- Track CO₂ savings
+- Calculate tree equivalents
+- Earn eco badges
+- View environmental contributions
+
+### 🚨 **Emergency SOS**
+- One-tap emergency alert
+- Share live location
+- Contact emergency services
+- Manage emergency contacts
+
+### 🚗 **Multi-Vehicle Support**
+- Manage multiple vehicles
+- Set primary vehicle
+- Switch between vehicles easily
+- Individual tracking per vehicle
+
+### 👤 **Profile Management**
+- Update personal information
+- Change password securely
+- Manage account settings
+- Configure API endpoints
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+- **Framework:** React Native with Expo SDK 54
+- **Styling:** NativeWind (Tailwind CSS for React Native)
+- **Navigation:** React Navigation v7
+- **Animations:** React Native Reanimated 2
+- **State Management:** React Context API
+- **HTTP Client:** Axios
+- **Storage:** AsyncStorage
+
+### Backend
+- **Runtime:** Node.js v18+
+- **Framework:** Express.js
+- **Database:** MongoDB with Mongoose ODM
+- **Authentication:** JWT (JSON Web Tokens)
+- **Password Hashing:** Node.js Crypto (scrypt)
+- **Environment:** dotenv
 
 ---
 
 ## 📁 Project Structure
 
 ```
-DriveCare/
-├── backend/                  # Node.js + Express API
+OurApp-main/
+├── backend/
 │   ├── config/
-│   │   └── db.js             # MongoDB connection
+│   │   └── db.js                 # MongoDB connection
 │   ├── middleware/
-│   │   └── authMiddleware.js # JWT verification
+│   │   └── authMiddleware.js     # JWT verification
 │   ├── models/
-│   │   ├── User.js
-│   │   ├── Vehicle.js
-│   │   └── SosLog.js
+│   │   ├── User.js               # User schema
+│   │   ├── Vehicle.js            # Vehicle schema
+│   │   └── SosLog.js             # SOS log schema
 │   ├── routes/
-│   │   ├── auth.js
-│   │   ├── profile.js
-│   │   ├── vehicles.js
-│   │   └── sos.js
+│   │   ├── auth.js               # Authentication routes
+│   │   ├── profile.js            # Profile routes
+│   │   ├── vehicles.js           # Vehicle CRUD + logs
+│   │   └── sos.js                # Emergency routes
 │   ├── utils/
-│   │   ├── jwt.js
-│   │   └── password.js
-│   ├── scripts/
-│   │   └── migrate-json-to-mongodb.js
-│   ├── server.js
-│   ├── .env.example          # ← copy this to .env and fill in values
-│   └── package.json
+│   │   ├── jwt.js                # JWT helpers
+│   │   └── password.js           # Password hashing
+│   ├── .env.example              # Environment template
+│   ├── package.json
+│   └── server.js                 # Entry point
 │
-├── frontend/                 # React Native (Expo)
+├── frontend/
 │   ├── src/
+│   │   ├── components/
+│   │   │   └── ui/               # Reusable UI components
+│   │   │       ├── Button.js
+│   │   │       └── Input.js
+│   │   ├── context/
+│   │   │   └── AuthContext.js    # Authentication state
 │   │   ├── navigation/
+│   │   │   └── AppNavigator.js   # Navigation setup
 │   │   ├── screens/
+│   │   │   ├── HomeScreen.js
+│   │   │   ├── FuelTrackerScreen.js
+│   │   │   ├── ServiceRemindersScreen.js
+│   │   │   ├── DocumentsScreen.js
+│   │   │   ├── VehicleHealthScreen.js
+│   │   │   ├── EcoImpactScreen.js
+│   │   │   ├── MyVehiclesScreen.js
+│   │   │   ├── SOSScreen.js
+│   │   │   ├── ProfileScreen.js
+│   │   │   ├── SettingsScreen.js
+│   │   │   └── ...auth screens
 │   │   ├── services/
-│   │   │   └── api.js        # All API calls
+│   │   │   └── api.js            # API client
 │   │   └── utils/
-│   │       └── currency.js   # INR formatting
-│   ├── App.js
-│   └── package.json
+│   │       ├── alert.js          # Cross-platform alerts
+│   │       └── currency.js       # INR formatting
+│   ├── assets/                   # Images and icons
+│   ├── .env.example
+│   ├── app.json                  # Expo configuration
+│   ├── package.json
+│   └── App.js                    # Entry point
 │
 └── README.md
 ```
 
 ---
 
-## 📦 Installation & Setup
+## � Quick Start
 
 ### Prerequisites
 
-- Node.js v18 or higher
-- npm v9 or higher
-- [Expo CLI](https://docs.expo.dev/get-started/installation/) — `npm install -g expo-cli`
-- A [MongoDB Atlas](https://www.mongodb.com/atlas) account (free tier works)
-- A smartphone with the [Expo Go](https://expo.dev/client) app (for testing)
+- **Node.js** v18 or higher ([Download](https://nodejs.org/))
+- **MongoDB Atlas** account ([Sign up](https://www.mongodb.com/cloud/atlas))
+- **Git** ([Download](https://git-scm.com/))
+- **Expo CLI** (optional, for mobile development)
 
----
-
-### 1. Clone the Repository
+### 1. Clone Repository
 
 ```bash
-git clone https://github.com/Srinivas092/DriveCare.git
-cd DriveCare
+git clone https://github.com/sujalcs25-commits/OurApp.git
+cd OurApp
 ```
-
----
 
 ### 2. Backend Setup
 
@@ -115,172 +176,265 @@ cd backend
 npm install
 ```
 
-**Configure environment variables:**
-
-```bash
-cp .env.example .env
-```
-
-Open `backend/.env` and fill in your values:
+Create `.env` file:
 
 ```env
 PORT=5000
 NODE_ENV=development
 
-# Your MongoDB Atlas connection string
-MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/
+# MongoDB Atlas connection string
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/drivecare
 
-# A long random string for signing JWT tokens
-JWT_SECRET=replace_with_a_long_random_secret_string
+# JWT secret (generate a random string)
+JWT_SECRET=your_super_secret_jwt_key_here_make_it_long_and_random
 
-# Allowed frontend origins (comma-separated)
+# CORS origins
 CORS_ORIGIN=http://localhost:8081,http://localhost:19006
 
-# Twilio (optional — SOS SMS will be skipped if not set)
+# Optional: Twilio for SOS SMS
 TWILIO_ACCOUNT_SID=
 TWILIO_AUTH_TOKEN=
-TWILIO_FROM_NUMBER=
+TWILIO_PHONE_NUMBER=
 ```
 
-**Start the backend:**
+Start backend:
 
 ```bash
-# Development (auto-restarts on file changes)
-npm run dev
-
-# Production
 npm start
 ```
 
-The API will be available at `http://localhost:5000`.
-
----
+Backend runs on `http://localhost:5000`
 
 ### 3. Frontend Setup
 
 ```bash
-cd ../frontend
+cd frontend
 npm install
 ```
 
-**Configure the API URL (optional):**
-
-If your backend is running on a different host or port, create a `.env` file in the `frontend/` folder:
+Create `.env` file:
 
 ```env
-EXPO_PUBLIC_API_URL=http://your-backend-ip:5000/api
+EXPO_PUBLIC_API_URL=http://localhost:5000/api
 ```
 
-> **Android emulator:** The app automatically uses `http://10.0.2.2:5000/api`  
-> **iOS simulator / physical device:** Uses `http://127.0.0.1:5000/api`  
-> **Physical Android device:** Set `EXPO_PUBLIC_API_URL` to your machine's local IP, e.g. `http://192.168.1.10:5000/api`
-
-**Start the frontend:**
+Start frontend:
 
 ```bash
-npx expo start
+# Web
+npm run web
+
+# Android
+npm run android
+
+# iOS (macOS only)
+npm run ios
 ```
 
-Scan the QR code with Expo Go on your phone, or press `a` for Android emulator / `i` for iOS simulator.
+---
+
+## 📱 Building APK
+
+### Using EAS Build (Recommended)
+
+```bash
+cd frontend
+
+# Build APK for Android
+npx eas-cli build --platform android --profile preview
+
+# Check build status
+npx eas-cli build:list
+```
+
+The APK will be available for download from your Expo dashboard once the build completes.
+
+### Build Profiles
+
+- **preview:** Development APK with debugging enabled
+- **production:** Production-ready APK for release
 
 ---
 
-## ⚙️ Environment Variables Reference
+## 🔑 Demo Account
 
-### Backend (`backend/.env`)
+Try the app without registration:
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `PORT` | No | Server port (default: `5000`) |
-| `NODE_ENV` | No | `development` or `production` |
-| `MONGODB_URI` | **Yes** | MongoDB Atlas connection string |
-| `JWT_SECRET` | **Yes** | Secret key for signing JWT tokens |
-| `CORS_ORIGIN` | No | Comma-separated allowed origins |
-| `TWILIO_ACCOUNT_SID` | No | Twilio Account SID (for SOS SMS) |
-| `TWILIO_AUTH_TOKEN` | No | Twilio Auth Token (for SOS SMS) |
-| `TWILIO_FROM_NUMBER` | No | Twilio phone number (for SOS SMS) |
+- **Email:** `demo@drivecare.com`
+- **Password:** `demo123`
 
 ---
 
-## 📡 API Endpoints
+## 📡 API Documentation
 
-### Auth
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/auth/register` | Create account |
-| POST | `/api/auth/login` | Login and get JWT |
+### Authentication
 
-### Profile
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/profile` | Get current user profile |
-| PUT | `/api/profile` | Update name / phone |
-| PUT | `/api/profile/password` | Change password |
+```http
+POST /api/auth/register
+POST /api/auth/login
+```
 
 ### Vehicles
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/vehicles` | List all user vehicles |
-| GET | `/api/vehicles/:id` | Get single vehicle |
-| POST | `/api/vehicles` | Add vehicle |
-| PUT | `/api/vehicles/:id` | Edit vehicle |
-| DELETE | `/api/vehicles/:id` | Delete vehicle |
-| POST | `/api/vehicles/:id/primary` | Set as primary vehicle |
-| POST | `/api/vehicles/:id/fuel` | Add fuel log |
-| POST | `/api/vehicles/:id/service` | Add service log |
-| POST | `/api/vehicles/:id/documents` | Add document |
-| POST | `/api/vehicles/:id/eco` | Log eco impact |
-| GET | `/api/vehicles/:id/eco` | Get eco summary |
+
+```http
+GET    /api/vehicles
+POST   /api/vehicles
+GET    /api/vehicles/:id
+PUT    /api/vehicles/:id
+DELETE /api/vehicles/:id
+POST   /api/vehicles/:id/primary
+```
+
+### Fuel Logs
+
+```http
+POST   /api/vehicles/:id/fuel
+PUT    /api/vehicles/:id/fuel/:fuelId
+DELETE /api/vehicles/:id/fuel/:fuelId
+```
+
+### Service Logs
+
+```http
+POST   /api/vehicles/:id/service
+PUT    /api/vehicles/:id/service/:serviceId
+DELETE /api/vehicles/:id/service/:serviceId
+```
+
+### Documents
+
+```http
+POST   /api/vehicles/:id/documents
+PUT    /api/vehicles/:id/documents/:docId
+DELETE /api/vehicles/:id/documents/:docId
+```
+
+### Eco Impact
+
+```http
+POST /api/vehicles/:id/eco
+GET  /api/vehicles/:id/eco
+```
 
 ### SOS
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/sos/contacts` | List emergency contacts |
-| POST | `/api/sos/contacts` | Add emergency contact |
-| PUT | `/api/sos/contacts/:id` | Edit contact |
-| DELETE | `/api/sos/contacts/:id` | Delete contact |
-| POST | `/api/sos/trigger` | Trigger SOS alert |
-| POST | `/api/sos/:id/location` | Update live location |
-| POST | `/api/sos/:id/stop` | Stop SOS session |
-| GET | `/api/sos/history` | SOS history |
 
----
-
-## 🧪 Demo Account
-
-The app ships with a demo account you can use to explore without registering:
-
-```
-Email:    demo@drivecare.com
-Password: Demo1234
+```http
+GET    /api/sos/contacts
+POST   /api/sos/contacts
+PUT    /api/sos/contacts/:id
+DELETE /api/sos/contacts/:id
+POST   /api/sos/trigger
+POST   /api/sos/:id/stop
+GET    /api/sos/history
 ```
 
 ---
 
-## 🔐 Security Notes
+## 🎨 Design System
 
-- All passwords are hashed using `crypto.scryptSync` (Node built-in, no extra dependencies)
-- JWT tokens expire after 7 days
-- The `passwordHash` field is never returned in API responses
-- All vehicle and SOS routes require a valid JWT token
-- The `.env` file is gitignored — **never commit real credentials**
+DriveCare uses a custom design system based on Material Design 3 principles:
+
+- **Primary Color:** `#0040a1` (Deep Blue)
+- **Surface Colors:** Light mode optimized
+- **Typography:** System fonts with custom weights
+- **Animations:** Smooth transitions with Reanimated 2
+- **Icons:** Material Icons
+
+---
+
+## � Security Features
+
+- ✅ Password hashing with `crypto.scryptSync`
+- ✅ JWT-based authentication
+- ✅ Protected API routes
+- ✅ CORS configuration
+- ✅ Input validation and sanitization
+- ✅ Secure token storage
+- ✅ Environment variable protection
+
+---
+
+## 🧪 Testing
+
+### Backend
+
+```bash
+cd backend
+npm test
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm test
+```
+
+---
+
+## 📦 Deployment
+
+### Backend (Render.com)
+
+1. Create new Web Service on Render
+2. Connect GitHub repository
+3. Set build command: `cd backend && npm install`
+4. Set start command: `cd backend && npm start`
+5. Add environment variables
+6. Deploy
+
+### Frontend (Expo)
+
+```bash
+cd frontend
+npx eas-cli build --platform android --profile production
+```
 
 ---
 
 ## 🤝 Contributing
 
+Contributions are welcome! Please follow these steps:
+
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Commit your changes: `git commit -m "Add your feature"`
-4. Push to the branch: `git push origin feature/your-feature`
-5. Open a Pull Request
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
 
 ---
 
-## 📄 License
+## � License
 
-MIT License — feel free to use this project for learning or as a base for your own app.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-*Built with ❤️ for vehicle owners in India*
+## 👨‍💻 Author
+
+**Sujal Tompe**
+
+- GitHub: [@sujalcs25-commits](https://github.com/sujalcs25-commits)
+- Repository: [OurApp](https://github.com/sujalcs25-commits/OurApp)
+
+---
+
+## 🙏 Acknowledgments
+
+- React Native and Expo teams
+- MongoDB Atlas
+- Material Design Icons
+- NativeWind community
+
+---
+
+## 📞 Support
+
+For issues and questions:
+- Open an issue on [GitHub](https://github.com/sujalcs25-commits/OurApp/issues)
+- Check existing documentation
+- Review closed issues for solutions
+
+---
+
+**Made with ❤️ for vehicle owners everywhere**
