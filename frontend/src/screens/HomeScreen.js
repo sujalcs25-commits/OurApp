@@ -74,9 +74,12 @@ export default function HomeScreen({ navigation }) {
 
       setVehicles(vehicleData);
 
-      if (vehicleData.length > 0) {
+      // Find primary vehicle or use first one
+      const primaryVehicle = vehicleData.find(v => v.isPrimary) || vehicleData[0];
+
+      if (primaryVehicle) {
         try {
-          const eco = await fetchEcoSummary(vehicleData[0].id);
+          const eco = await fetchEcoSummary(primaryVehicle.id || primaryVehicle._id);
           setEcoSummary(eco);
         } catch { /* eco summary is non-critical */ }
       } else {
@@ -103,8 +106,12 @@ export default function HomeScreen({ navigation }) {
         try {
           const vehicleData = await fetchVehicles();
           setVehicles(vehicleData);
-          if (vehicleData.length > 0) {
-            const eco = await fetchEcoSummary(vehicleData[0].id);
+          
+          // Find primary vehicle or use first one
+          const primaryVehicle = vehicleData.find(v => v.isPrimary) || vehicleData[0];
+          
+          if (primaryVehicle) {
+            const eco = await fetchEcoSummary(primaryVehicle.id || primaryVehicle._id);
             setEcoSummary(eco);
           }
         } catch { /* silent */ }
@@ -132,7 +139,7 @@ export default function HomeScreen({ navigation }) {
     </View>
   );
 
-  const firstVehicle = vehicles[0];
+  const primaryVehicle = vehicles.find(v => v.isPrimary) || vehicles[0];
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -216,30 +223,30 @@ export default function HomeScreen({ navigation }) {
                           <MaterialIcons name="directions-car" size={28} color="#ffffff" />
                         </View>
                         <View className="flex-1">
-                          <Text className="font-extrabold text-2xl text-on-primary">{firstVehicle.make} {firstVehicle.model}</Text>
-                          <Text className="text-sm text-primary-fixed-dim mt-1 font-medium">{firstVehicle.licensePlate}</Text>
+                          <Text className="font-extrabold text-2xl text-on-primary">{primaryVehicle.make} {primaryVehicle.model}</Text>
+                          <Text className="text-sm text-primary-fixed-dim mt-1 font-medium">{primaryVehicle.licensePlate}</Text>
                         </View>
                       </View>
                       <View className="bg-white/20 px-3 py-1.5 rounded-full flex-row items-center gap-1.5 backdrop-blur-md">
                         <MaterialIcons name="check-circle" size={14} color="#63f7ff" />
-                        <Text className="text-[10px] font-bold uppercase tracking-wider text-[#63f7ff]">{firstVehicle.healthStatus}</Text>
+                        <Text className="text-[10px] font-bold uppercase tracking-wider text-[#63f7ff]">{primaryVehicle.healthStatus}</Text>
                       </View>
                     </View>
 
                     <View className="mt-8 z-10 flex-row justify-between">
                       <View className="bg-white/10 rounded-2xl p-3 flex-1 mr-2 items-center backdrop-blur-md border border-white/10">
                         <MaterialIcons name="battery-charging-full" size={20} color="#b2c5ff" className="mb-1" />
-                        <Text className="font-extrabold text-lg text-white">{firstVehicle.battery}%</Text>
+                        <Text className="font-extrabold text-lg text-white">{primaryVehicle.battery}%</Text>
                         <Text className="text-[10px] text-primary-fixed-dim uppercase font-bold tracking-widest mt-1">Battery</Text>
                       </View>
                       <View className="bg-white/10 rounded-2xl p-3 flex-1 mx-2 items-center backdrop-blur-md border border-white/10">
                         <MaterialIcons name="speed" size={20} color="#b2c5ff" className="mb-1" />
-                        <Text className="font-extrabold text-lg text-white">{firstVehicle.range}</Text>
+                        <Text className="font-extrabold text-lg text-white">{primaryVehicle.range}</Text>
                         <Text className="text-[10px] text-primary-fixed-dim uppercase font-bold tracking-widest mt-1">Km Range</Text>
                       </View>
                       <View className="bg-white/10 rounded-2xl p-3 flex-1 ml-2 items-center backdrop-blur-md border border-white/10">
                         <MaterialIcons name="tire-repair" size={20} color="#b2c5ff" className="mb-1" />
-                        <Text className="font-extrabold text-lg text-[#63f7ff]">{firstVehicle.tirePressure}</Text>
+                        <Text className="font-extrabold text-lg text-[#63f7ff]">{primaryVehicle.tirePressure}</Text>
                         <Text className="text-[10px] text-primary-fixed-dim uppercase font-bold tracking-widest mt-1">Tires</Text>
                       </View>
                     </View>
