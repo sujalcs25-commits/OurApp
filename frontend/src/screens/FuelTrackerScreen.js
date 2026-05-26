@@ -37,7 +37,12 @@ export default function FuelTrackerScreen() {
 
       const data = await fetchVehicles();
       setVehicles(data);
-      if (data.length > 0) setSelectedVehicle(data[0]);
+      
+      // Select primary vehicle or first vehicle
+      if (data.length > 0) {
+        const primaryVehicle = data.find(v => v.isPrimary) || data[0];
+        setSelectedVehicle(primaryVehicle);
+      }
     } catch (error) {
       console.error(error);
       UniversalAlert.alert('Error', 'Unable to fetch fuel history.');
@@ -50,7 +55,7 @@ export default function FuelTrackerScreen() {
   const currentMonth = new Date().toLocaleString('en-IN', { month: 'long', year: 'numeric' });
 
   const stats = useMemo(() => {
-    if (!selectedVehicle || !selectedVehicle.fuelLogs) return { totalSpent: 0, totalVolume: 0, avgEff: 0, logs: [] };
+    if (!selectedVehicle || !selectedVehicle.fuelLogs) return { totalSpent: 0, totalVolume: 0, logs: [] };
 
     const sortedLogs = [...selectedVehicle.fuelLogs].sort((a, b) => {
       // Primary sort by odometer (descending), fallback to createdAt
@@ -65,29 +70,9 @@ export default function FuelTrackerScreen() {
       totalVolume += Number(log.amount || 0);
     });
 
-    let avgEff = 0;
-    // For efficiency, we need the distance between the earliest and latest log.
-    // However, the volume of the latest fill-up hasn't been "used" to cover the distance yet.
-    // Standard avg = Total Distance / Total Volume (excluding the very first fill-up volume)
-    if (sortedLogs.length >= 2) {
-      const latestOdo = sortedLogs[0].odometer;
-      const oldestOdo = sortedLogs[sortedLogs.length - 1].odometer;
-      const distance = latestOdo - oldestOdo;
-      
-      // Calculate volume used to cover that distance (everything except the oldest fill value)
-      // Because the oldest fill-up was the "start" of the tracking.
-      let usedVolume = 0;
-      for (let i = 0; i < sortedLogs.length - 1; i++) {
-        usedVolume += Number(sortedLogs[i].amount || 0);
-      }
-
-      if (distance > 0 && usedVolume > 0) avgEff = distance / usedVolume;
-    }
-
     return {
       totalSpent: parseFloat(totalSpent.toFixed(2)),
       totalVolume: totalVolume.toFixed(1),
-      avgEff: avgEff > 0 ? avgEff.toFixed(1) : '-',
       logs: sortedLogs
     };
   }, [selectedVehicle]);
@@ -156,18 +141,10 @@ export default function FuelTrackerScreen() {
           </View>
         </View>
 
-        <View className="flex-row gap-4">
-          <View className="bg-surface rounded-2xl p-5 shadow-sm border border-outline-variant/10 flex-1">
-            <Text className="text-on-surface-variant text-xs font-bold mb-1 uppercase tracking-wider">Volume</Text>
-            <Text className="font-extrabold text-2xl text-on-surface">{stats.totalVolume} <Text className="text-sm font-medium">L</Text></Text>
-            <MaterialIcons name="local-gas-station" size={20} color="#0040a1" className="absolute top-4 right-4 opacity-50" />
-          </View>
-
-          <View className="bg-primary rounded-2xl p-5 shadow-sm flex-1">
-            <Text className="text-white/80 text-xs font-bold mb-1 uppercase tracking-wider">Efficiency</Text>
-            <Text className="font-extrabold text-2xl text-white">{stats.avgEff} <Text className="text-sm font-medium">{stats.avgEff !== '-' ? 'km/L' : ''}</Text></Text>
-            <MaterialIcons name="speed" size={20} color="#fff" className="absolute top-4 right-4 opacity-50" />
-          </View>
+        <View className="bg-surface rounded-2xl p-5 shadow-sm border border-outline-variant/10">
+          <Text className="text-on-surface-variant text-xs font-bold mb-1 uppercase tracking-wider">Total Volume</Text>
+          <Text className="font-extrabold text-2xl text-on-surface">{stats.totalVolume} <Text className="text-sm font-medium">Liters</Text></Text>
+          <MaterialIcons name="local-gas-station" size={20} color="#0040a1" className="absolute top-4 right-4 opacity-50" />
         </View>
       </View>
 
@@ -187,9 +164,34 @@ export default function FuelTrackerScreen() {
           </TouchableOpacity>
           <Text className="text-xl font-extrabold tracking-tight text-on-surface">Fuel Tracker</Text>
         </View>
-        <View className="bg-primary/10 py-1 px-3 rounded-full border border-primary/20">
+        
+        {/* Vehicle Selector */}
+        {vehicles.length > 1 ? (
+          <View className="flex-row gap-2">
+            {vehicles.map((vehicle) => {
+              const isSelected = selectedVehicle?.id === vehicle.id || selectedVehicle?._id === vehicle._id;
+              return (
+                <TouchableOpacity
+                  key={vehicle.id || vehicle._id}
+                  onPress={() => setSelectedVehicle(vehicle)}
+                  className={`py-1.5 px-3 rounded-full border ${
+                    isSelected 
+                      ? 'bg-primary border-primary' 
+                      : 'bg-surface border-outline-variant/30'
+                  }`}
+                >
+                  <Text className={`text-xs font-bold ${isSelected ? 'text-white' : 'text-on-surface-variant'}`}>
+                    {vehicle.licensePlate}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        ) : (
+          <View className="bg-primary/10 py-1 px-3 rounded-full border border-primary/20">
             <Text className="text-primary text-xs font-bold">{selectedVehicle ? selectedVehicle.licensePlate : 'Garage'}</Text>
-        </View>
+          </View>
+        )}
       </View>
 
       {loading && !refreshing ? (
