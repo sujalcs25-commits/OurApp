@@ -138,6 +138,16 @@ export const addFuelLog = async (vehicleId, fuelData) => {
   return response.data;
 };
 
+export const updateFuelLog = async (vehicleId, fuelId, fuelData) => {
+  const response = await api.put(`/vehicles/${vehicleId}/fuel/${fuelId}`, fuelData);
+  return response.data;
+};
+
+export const deleteFuelLog = async (vehicleId, fuelId) => {
+  const response = await api.delete(`/vehicles/${vehicleId}/fuel/${fuelId}`);
+  return response.data;
+};
+
 export const addServiceLog = async (vehicleId, serviceData) => {
   const response = await api.post(`/vehicles/${vehicleId}/service`, serviceData);
   return response.data;

@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import Animated, { useSharedValue, useAnimatedStyle, withSpring, FadeInDown } from 'react-native-reanimated';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { fetchVehicles, addFuelLog } from '../services/api';
+import { fetchVehicles, addFuelLog, updateFuelLog, deleteFuelLog } from '../services/api';
 import { formatINR } from '../utils/currency';
 
 import UniversalAlert from '../utils/alert';
@@ -18,6 +18,7 @@ export default function FuelTrackerScreen() {
   const [refreshing, setRefreshing] = useState(false);
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [editingLog, setEditingLog] = useState(null);
   const [amount, setAmount] = useState('');
   const [cost, setCost] = useState('');
   const [odometer, setOdometer] = useState('');
@@ -87,36 +88,100 @@ export default function FuelTrackerScreen() {
 
     try {
       setAddingFuel(true);
-      await addFuelLog(selectedVehicle.id, { amount: parsedAmount, cost: parsedCost, odometer });
+      
+      if (editingLog) {
+        // Update existing log
+        await updateFuelLog(selectedVehicle.id || selectedVehicle._id, editingLog.id || editingLog._id, { 
+          amount: parsedAmount, 
+          cost: parsedCost 
+        });
+      } else {
+        // Add new log
+        await addFuelLog(selectedVehicle.id || selectedVehicle._id, { 
+          amount: parsedAmount, 
+          cost: parsedCost 
+        });
+      }
+      
       setModalVisible(false);
-      setAmount(''); setCost(''); setOdometer('');
+      resetForm();
       await loadData(true);
     } catch (error) {
-      UniversalAlert.alert('Error', error?.response?.data?.msg || 'Failed to add fuel log.');
+      UniversalAlert.alert('Error', error?.response?.data?.msg || 'Failed to save fuel log.');
     } finally {
       setAddingFuel(false);
     }
+  };
+
+  const handleEdit = (log) => {
+    setEditingLog(log);
+    setAmount(log.amount.toString());
+    setCost(log.cost.toString());
+    setModalVisible(true);
+  };
+
+  const handleDelete = (log) => {
+    UniversalAlert.alert(
+      'Delete Fuel Log',
+      'Are you sure you want to delete this fuel record?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await deleteFuelLog(selectedVehicle.id || selectedVehicle._id, log.id || log._id);
+              await loadData(true);
+            } catch (error) {
+              UniversalAlert.alert('Error', 'Failed to delete fuel log.');
+            }
+          }
+        }
+      ]
+    );
+  };
+
+  const resetForm = () => {
+    setEditingLog(null);
+    setAmount('');
+    setCost('');
+    setOdometer('');
   };
 
   const renderLogItem = ({ item: log, index }) => {
     const dateObj = new Date(log.createdAt);
     return (
       <Animated.View entering={FadeInDown.delay(index * 100).duration(400).springify()}>
-        <TouchableOpacity activeOpacity={0.7} className="bg-surface rounded-2xl p-4 flex-row items-center justify-between shadow-sm border border-outline-variant/20 mb-3">
-          <View className="flex-row items-center gap-4">
+        <View className="bg-surface rounded-2xl p-4 flex-row items-center justify-between shadow-sm border border-outline-variant/20 mb-3">
+          <View className="flex-row items-center gap-4 flex-1">
             <View className="w-12 h-12 rounded-xl bg-surface-container-high items-center justify-center">
               <Text className="font-extrabold text-on-surface text-base">{dateObj.getDate()}</Text>
               <Text className="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">{dateObj.toLocaleString('en-IN', { month: 'short' })}</Text>
             </View>
-            <View>
+            <View className="flex-1">
               <Text className="font-bold text-on-surface text-base">Fuel Fill-up</Text>
               <Text className="text-xs text-on-surface-variant mt-1 font-medium">{log.amount} L</Text>
             </View>
           </View>
-          <View className="items-end">
-            <Text className="font-extrabold text-primary text-lg">{formatINR(log.cost)}</Text>
+          <View className="flex-row items-center gap-2">
+            <View className="items-end mr-2">
+              <Text className="font-extrabold text-primary text-lg">{formatINR(log.cost)}</Text>
+            </View>
+            <TouchableOpacity 
+              onPress={() => handleEdit(log)} 
+              className="w-10 h-10 bg-surface-container-highest rounded-full items-center justify-center"
+            >
+              <MaterialIcons name="edit" size={18} color="#0040a1" />
+            </TouchableOpacity>
+            <TouchableOpacity 
+              onPress={() => handleDelete(log)} 
+              className="w-10 h-10 bg-error-container/20 rounded-full items-center justify-center"
+            >
+              <MaterialIcons name="delete" size={18} color="#ba1a1a" />
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        </View>
       </Animated.View>
     );
   };
@@ -203,8 +268,8 @@ export default function FuelTrackerScreen() {
         <View className="flex-1 bg-black/60 justify-end">
           <View className="bg-surface rounded-t-[32px] p-6 pb-10">
              <View className="flex-row justify-between items-center mb-8">
-                <Text className="text-2xl font-extrabold text-on-surface">Add Fuel Record</Text>
-                <TouchableOpacity onPress={() => setModalVisible(false)} className="w-10 h-10 bg-surface-container-highest rounded-full items-center justify-center">
+                <Text className="text-2xl font-extrabold text-on-surface">{editingLog ? 'Edit' : 'Add'} Fuel Record</Text>
+                <TouchableOpacity onPress={() => { setModalVisible(false); resetForm(); }} className="w-10 h-10 bg-surface-container-highest rounded-full items-center justify-center">
                    <MaterialIcons name="close" size={20} color="#111c2d" />
                 </TouchableOpacity>
              </View>
@@ -213,7 +278,7 @@ export default function FuelTrackerScreen() {
              <Input label="Fuel Volume (Liters)" placeholder="e.g. 35.5" keyboardType="numeric" value={amount} onChangeText={setAmount} icon="water-drop" />
 
              <View className="mt-4">
-                <Button title="Save Record" onPress={handleAddFuel} loading={addingFuel} icon="save" />
+                <Button title={editingLog ? 'Update Record' : 'Save Record'} onPress={handleAddFuel} loading={addingFuel} icon="save" />
              </View>
           </View>
         </View>
@@ -225,7 +290,7 @@ export default function FuelTrackerScreen() {
           activeOpacity={0.8}
           onPressIn={() => (fabScale.value = withSpring(0.9))}
           onPressOut={() => (fabScale.value = withSpring(1))}
-          onPress={() => setModalVisible(true)}
+          onPress={() => { resetForm(); setModalVisible(true); }}
           className="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/40"
         >
           <MaterialIcons name="add" size={32} color="#fff" />

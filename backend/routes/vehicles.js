@@ -245,6 +245,69 @@ router.post('/:id/fuel', auth, async (req, res) => {
   }
 });
 
+// PUT /api/vehicles/:id/fuel/:fuelId
+router.put('/:id/fuel/:fuelId', auth, async (req, res) => {
+  const { amount, cost, odometer } = req.body;
+  
+  if (!isValidId(req.params.id) || !isValidId(req.params.fuelId)) {
+    return res.status(400).json({ msg: 'Invalid IDs provided' });
+  }
+
+  try {
+    const vehicle = await Vehicle.findOne({ _id: req.params.id, userId: req.user.id });
+    if (!vehicle) return res.status(404).json({ msg: 'Vehicle not found' });
+
+    const log = vehicle.fuelLogs.id(req.params.fuelId);
+    if (!log) return res.status(404).json({ msg: 'Fuel log not found' });
+
+    if (amount != null) {
+      const parsedAmount = Number(amount);
+      if (isNaN(parsedAmount) || parsedAmount <= 0) {
+        return res.status(400).json({ msg: 'Amount must be a positive number' });
+      }
+      log.amount = parsedAmount;
+    }
+    
+    if (cost != null) {
+      const parsedCost = Number(cost);
+      if (isNaN(parsedCost) || parsedCost <= 0) {
+        return res.status(400).json({ msg: 'Cost must be a positive number' });
+      }
+      log.cost = parsedCost;
+    }
+    
+    if (odometer !== undefined) log.odometer = odometer ? Number(odometer) : 0;
+
+    await vehicle.save();
+    res.json({ msg: 'Fuel log updated', fuelData: log.toJSON() });
+  } catch (err) {
+    console.error('[vehicles/fuel PUT]', err.message);
+    res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
+// DELETE /api/vehicles/:id/fuel/:fuelId
+router.delete('/:id/fuel/:fuelId', auth, async (req, res) => {
+  if (!isValidId(req.params.id) || !isValidId(req.params.fuelId)) {
+    return res.status(400).json({ msg: 'Invalid IDs provided' });
+  }
+
+  try {
+    const vehicle = await Vehicle.findOne({ _id: req.params.id, userId: req.user.id });
+    if (!vehicle) return res.status(404).json({ msg: 'Vehicle not found' });
+
+    const log = vehicle.fuelLogs.id(req.params.fuelId);
+    if (!log) return res.status(404).json({ msg: 'Fuel log not found' });
+
+    log.deleteOne();
+    await vehicle.save();
+    res.json({ msg: 'Fuel log deleted' });
+  } catch (err) {
+    console.error('[vehicles/fuel DELETE]', err.message);
+    res.status(500).json({ msg: 'Server Error' });
+  }
+});
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // SERVICE LOGS
 // ═══════════════════════════════════════════════════════════════════════════════
