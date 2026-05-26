@@ -131,10 +131,16 @@ export default function FuelTrackerScreen() {
           style: 'destructive',
           onPress: async () => {
             try {
-              await deleteFuelLog(selectedVehicle.id || selectedVehicle._id, log.id || log._id);
+              const vehicleId = selectedVehicle.id || selectedVehicle._id;
+              const logId = log.id || log._id;
+              console.log('Deleting fuel log:', { vehicleId, logId });
+              await deleteFuelLog(vehicleId, logId);
               await loadData(true);
+              UniversalAlert.alert('Success', 'Fuel log deleted successfully.');
             } catch (error) {
-              UniversalAlert.alert('Error', 'Failed to delete fuel log.');
+              console.error('Delete error:', error);
+              const errorMsg = error?.response?.data?.msg || error?.message || 'Failed to delete fuel log.';
+              UniversalAlert.alert('Error', errorMsg);
             }
           }
         }
